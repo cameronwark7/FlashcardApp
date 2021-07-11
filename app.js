@@ -1,8 +1,12 @@
 const express = require('express');
 const app = express();
 
-app.get('/api/v1/something', (req, res) => {
-    
+// Body parser middleware
+app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.get('/api/v1/', (req, res) => {
+
 });
 
 const port = process.env.PORT || 3000;
