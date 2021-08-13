@@ -9,17 +9,15 @@ const AddCard = () => {
                 </select>
 
                 <label>Front: </label>
-                <input 
-                    type="text" 
+                <textarea
                     required
-                />
+                ></textarea>
 
                 <label>Back: </label>
-                <input 
-                    type="text" 
+                <textarea
                     required
-                />
-                
+                ></textarea>
+
                 <button>Add Card</button>
             </form>
         </div>
