@@ -3,6 +3,8 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Navbar from './components/Navbar'
 import AddCard from './components/AddCard';
 import Homepage from './components/Homepage';
+import Login from './components/Login';
+import Register from './components/Register';
 
 function App() {
   return (
@@ -15,6 +17,12 @@ function App() {
           </Route>
           <Route exact path="/add-card">
             <AddCard />
+          </Route>
+          <Route exact path="/login">
+            <Login />
+          </Route>
+          <Route exact path="/register">
+            <Register />
           </Route>
         </Switch>
       </div>
