@@ -10,6 +10,14 @@ const AddCard = () => {
         e.preventDefault();
         const card = {deck, front, back};
         console.log(card);
+
+        fetch('http://localhost:3001/api/v1/add-card', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(card)
+        }).then(() => {
+            console.log('Card added')
+        })
     }
 
     return(
