@@ -30,8 +30,5 @@ app.post('/api/v1/add-card', (req, res) => {
     console.log(req.body);
 });
 
-app.get('/api/v1/', (req, res) => {
-    // get request
-});
 
 
