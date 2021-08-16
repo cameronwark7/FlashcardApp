@@ -46,7 +46,17 @@ app.post('/api/v1/add-card', (req, res) => {
 
 // add deck if name is unique
 app.post('/api/v1/create-deck', (req, res) => {
-    console.log(req.body);
+    const deck = new Deck({
+        name: req.body.name
+    });
+
+    deck.save()
+        .then((result) => {
+            res.send(result)
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 });
 
 app.get('/api/v1/get-cards', (req, res) => {
