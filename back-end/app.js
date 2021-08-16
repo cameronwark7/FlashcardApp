@@ -43,5 +43,14 @@ app.post('/api/v1/add-card', (req, res) => {
         });
 });
 
-
+// return all cards
+app.get('/api/v1/get-cards', (req, res) => {
+    Card.find()
+        .then((result) => {
+            res.send(result);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+})
 
