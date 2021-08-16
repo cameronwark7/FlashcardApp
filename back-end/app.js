@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import postRoutes from './routes/posts.js';
 import Card from './models/card.js';
+import Deck from './models/deck.js';
 
 const app = express();
 
@@ -26,7 +27,7 @@ mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: tr
 
 mongoose.set('useFindAndModify', false);
 
-// endpoint to add card to deck
+// add card to deck
 app.post('/api/v1/add-card', (req, res) => {
     const card = new Card({
         front: req.body.front,
@@ -41,6 +42,11 @@ app.post('/api/v1/add-card', (req, res) => {
         .catch((err) => {
             console.log(err);
         });
+});
+
+// add deck if name is unique
+app.post('/api/v1/create-deck', (req, res) => {
+    console.log(req.body);
 });
 
 app.get('/api/v1/get-cards', (req, res) => {
