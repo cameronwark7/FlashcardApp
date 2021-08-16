@@ -43,14 +43,25 @@ app.post('/api/v1/add-card', (req, res) => {
         });
 });
 
-// return all cards
 app.get('/api/v1/get-cards', (req, res) => {
+
+    // returns all cards
     Card.find()
-        .then((result) => {
-            res.send(result);
+        .then((data) => {
+            res.send(data);
         })
         .catch((err) => {
             console.log(err);
         });
-})
+});
 
+// return a list of unique decks (alphabetecal order)
+app.get('/api/v1/unique-decks', (req, res) => {
+    Card.find().distinct('deck')
+        .then((data) => {
+            res.send(data);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+});

@@ -6,6 +6,7 @@ import Homepage from './components/Homepage';
 import Login from './components/Login';
 import Register from './components/Register';
 import Study from './components/Study';
+import Decks from './components/Decks';
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
           </Route>
           <Route exact path="/add-card">
             <AddCard />
+          </Route>
+          <Route exact path="/decks">
+            <Decks />
           </Route>
           <Route exact path="/login">
             <Login />
