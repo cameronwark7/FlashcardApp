@@ -7,6 +7,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Study from './components/Study';
 import Decks from './components/Decks';
+import CreateDeck from './components/CreateDeck';
 
 function App() {
   return (
@@ -25,6 +26,9 @@ function App() {
           </Route>
           <Route exact path="/decks">
             <Decks />
+          </Route>
+          <Route exact path="/create-deck">
+            <CreateDeck />
           </Route>
           <Route exact path="/login">
             <Login />

@@ -32,6 +32,7 @@ const AddCard = () => {
                     onChange={(e) => setDeck(e.target.value)}
                 >
                     <option value="default">Default</option>
+                    <option value="deck 2">Deck 2</option>
                 </select>
 
                 <label>Front: </label>
