@@ -5,6 +5,7 @@ import AddCard from './components/AddCard';
 import Homepage from './components/Homepage';
 import Login from './components/Login';
 import Register from './components/Register';
+import Study from './components/Study';
 
 function App() {
   return (
@@ -14,6 +15,9 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Homepage />
+          </Route>
+          <Route exact path="/study">
+            <Study />
           </Route>
           <Route exact path="/add-card">
             <AddCard />

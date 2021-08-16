@@ -5,6 +5,7 @@ const Navbar = () => {
         <div>
             <Link to="/">Home</Link>
             <Link to="/add-card">Add Card</Link>
+            <Link to="/study">Study</Link>
             <Link to="/login">Sign in</Link>
         </div>
     )
