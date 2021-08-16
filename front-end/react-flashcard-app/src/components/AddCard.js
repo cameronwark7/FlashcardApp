@@ -15,8 +15,10 @@ const AddCard = () => {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(card)
-        }).then(() => {
-            console.log('Card added')
+        }).then((res) => {
+            console.log(res);
+        }).catch((err) => {
+            console.log(err);
         })
     }
 

@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import postRoutes from './routes/posts.js';
+import Card from './models/card.js';
 
 const app = express();
 
@@ -27,7 +28,19 @@ mongoose.set('useFindAndModify', false);
 
 // endpoint to add card to deck
 app.post('/api/v1/add-card', (req, res) => {
-    console.log(req.body);
+    const card = new Card({
+        front: req.body.front,
+        back: req.body.back,
+        deck: req.body.deck
+    });
+
+    card.save()
+        .then((result) => {
+            res.send(result)
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 });
 
 

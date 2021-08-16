@@ -18,5 +18,6 @@ const cardSchema = new Schema({
 
 // will look for "Cards" collection
 const Card = mongoose.model('Card', cardSchema);
-module.exports = Card;
 
+//module.exports = Card;
+export default Card;
