@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 
-import posts from './posts';
+import cards from './cards';
 
 export default combineReducers({
-    posts
+    cards
 });
