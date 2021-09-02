@@ -1,8 +1,6 @@
 export default (cards = [], action) => {
     switch (action.type) {
-        case 'FETCH_ALL_DECKS':
-            return action.payload;
-        case 'FETCH_ALL':
+        case 'FETCH_ALL_CARDS':
             return cards;
         case 'CREATE':
             return cards;

@@ -9,7 +9,7 @@ import Study from './components/Study';
 import Decks from './components/Decks';
 import CreateDeck from './components/CreateDeck';
 
-import { getDecks } from './actions/cards';
+import { getDecks } from './actions/decks';
 import { useDispatch } from 'react-redux';
 import React, { useEffect } from 'react';
 

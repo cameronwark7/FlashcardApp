@@ -3,8 +3,15 @@ import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const Decks = () => {
+    // 'state.cards' references /reducers/index.js
+    const decks = useSelector((state) => state.decks);
 
     const history = useHistory();
+    // redirect to create deck component
+    const createDeck = () => {
+        history.push('/create-deck');
+    }
+    
     // const [decks, setDecks] = useState(null);
     // const [isPending, setPending] = useState(true)
 
@@ -28,10 +35,6 @@ const Decks = () => {
     //     displayDecks();
     // }, []);
 
-    // redirect to create deck component
-    const createDeck = () => {
-        history.push('/create-deck');
-    }
 
     return(
         <div>
