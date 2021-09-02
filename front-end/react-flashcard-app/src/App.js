@@ -17,7 +17,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getDecks()); // getDecks does not exist yet in ./actions/cards
+    dispatch(getDecks());
   }, []); // may need to add 'dispatch' in the array here
 
   return (
