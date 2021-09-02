@@ -9,7 +9,17 @@ import Study from './components/Study';
 import Decks from './components/Decks';
 import CreateDeck from './components/CreateDeck';
 
+import { getDecks } from './actions/cards';
+import { useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getDecks()); // getDecks does not exist yet in ./actions/cards
+  }, []); // may need to add 'dispatch' in the array here
+
   return (
     <Router>
       <Navbar />
