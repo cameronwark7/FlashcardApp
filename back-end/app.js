@@ -75,8 +75,9 @@ app.get('/api/v1/get-cards', (req, res) => {
 
 // return a list of unique decks (alphabetecal order)
 app.get('/api/v1/unique-decks', (req, res) => {
-    Card.find().distinct('deck')
+    Deck.find().distinct('name') // looking for unique name: key values in the Cards collection.
         .then((data) => {
+            console.log(data);
             res.send(data);
         })
         .catch((err) => {
