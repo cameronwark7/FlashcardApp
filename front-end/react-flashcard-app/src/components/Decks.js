@@ -12,30 +12,6 @@ const Decks = () => {
     const createDeck = () => {
         history.push('/create-deck');
     }
-    
-    // const [decks, setDecks] = useState(null);
-    // const [isPending, setPending] = useState(true)
-
-    // const displayDecks = () => {
-    //     fetch('http://localhost:3001/api/v1/unique-decks')
-    //         .then((res) => {
-    //             return res.json();
-    //         })
-    //         .then((data) => {
-    //             console.log(data);
-    //             setPending(false);
-    //             setDecks(data);
-    //         })
-    //         .catch((err) => {
-    //             console.log(err);
-    //         });
-    // }
-
-    // retrieve unique decks on first render
-    // useEffect(() => {
-    //     displayDecks();
-    // }, []);
-
 
     return(
         <div>
