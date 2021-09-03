@@ -19,7 +19,7 @@ const Decks = () => {
             {/* display a list of deck components with the .map() method and pass their names with props */}
             <div>
                 {/* {isPending && <p>Loading...</p>} */}
-                {/* {decks && <p>{decks}</p>} */}
+                {decks && <p>{decks}</p>}
             </div>
             <button onClick={createDeck}>Create Deck</button>
         </div>

@@ -53,7 +53,8 @@ app.post('/api/v1/create-deck', (req, res) => {
 
     deck.save() // being put into database properly
         .then((result) => {
-            res.send(result)
+            console.log(result);
+            res.send(result.name)
         })
         .catch((err) => {
             console.log(err);
