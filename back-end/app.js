@@ -46,11 +46,12 @@ app.post('/api/v1/add-card', (req, res) => {
 
 // add deck if name is unique
 app.post('/api/v1/create-deck', (req, res) => {
+    console.log(req.body.name); // showing up properly
     const deck = new Deck({
         name: req.body.name
     });
 
-    deck.save()
+    deck.save() // being put into database properly
         .then((result) => {
             res.send(result)
         })

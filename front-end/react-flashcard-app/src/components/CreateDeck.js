@@ -1,13 +1,20 @@
 import { useHistory } from 'react-router-dom';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { createDeck } from '../actions/decks';
 
 const CreateDeck = () => {
 
     const [postData, setPostData] = useState({ name: '' });
     const history = useHistory();
+    const dispatch = useDispatch();
 
-    const createDeck = () => {
-        console.log(postData.name);
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        console.log(postData);
+
+        dispatch(createDeck(postData));
 
         // fetch('http://localhost:3001/api/v1/create-deck', {
         //     method: 'POST',
@@ -28,7 +35,7 @@ const CreateDeck = () => {
 
     return(
         <div>
-            <form onSubmit={createDeck}>
+            <form onSubmit={handleSubmit}>
                 <label>Deck Name: </label>
                 <input
                     value={postData.name}

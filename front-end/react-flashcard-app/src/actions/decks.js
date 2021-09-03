@@ -14,10 +14,12 @@ export const getDecks = () => async (dispatch) => {
     }
 }
 
-export const createDeck = () => async (dispatch) => {
+export const createDeck = (post) => async (dispatch) => {
     try
     {
+        const { data } = await api.createDeck(post);
 
+        dispatch({ type: 'CREATE_DECK', payload: data });
     }
     catch (error)
     {

@@ -18,7 +18,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getDecks());
-  }, []); // may need to add 'dispatch' in the array here
+  }, [dispatch]);
 
   return (
     <Router>
