@@ -13,3 +13,14 @@ export const getDecks = () => async (dispatch) => {
         console.log(error.message);
     }
 }
+
+export const createDeck = () => async (dispatch) => {
+    try
+    {
+
+    }
+    catch (error)
+    {
+        console.log(error.message);
+    }
+}
