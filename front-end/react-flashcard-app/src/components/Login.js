@@ -1,16 +1,16 @@
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 const Login = () => {
 
-    let isSignup = false;
+    const [isSignup, setIsSignup] = useState(false);
 
     const formSwitch = () => {
-        isSignup = !isSignup;
+        setIsSignup(!isSignup);
     }
 
     return(
         <div>
-            <h2>Sign in</h2>
+            { isSignup ? <h2>Sign up</h2> : <h2>Sign in</h2> }
             <form>
                 <label>Email</label>
                 <input
@@ -20,10 +20,18 @@ const Login = () => {
                 <input
                     required
                 ></input>
+                { isSignup && (
+                    <>
+                    <label>Repeat password</label>
+                    <input
+                        required
+                    ></input>
+                    </>
+                )}
+                { isSignup? <button>Sign up</button> : <button>Sign in</button> }
             </form>
-            <a>Forgot password?</a>
-            {/* <span>Don't have an account? </span><Link to="/register">Sign up</Link> */}
-            <span>Don't have an account? </span><button onClick={formSwitch}>Sign up</button>
+            { isSignup? <><span>Already have an account? </span><a onClick={formSwitch}>Sign in</a></> 
+                : <><a>Forgot password?</a><span>Don't have an account? </span><a onClick={formSwitch}>Sign up</a></>}
         </div>
     )
 }
