@@ -1,6 +1,13 @@
 import { Link } from 'react-router-dom';
 
 const Login = () => {
+
+    let isSignup = false;
+
+    const formSwitch = () => {
+        isSignup = !isSignup;
+    }
+
     return(
         <div>
             <h2>Sign in</h2>
@@ -15,7 +22,8 @@ const Login = () => {
                 ></input>
             </form>
             <a>Forgot password?</a>
-            <span>Don't have an account? </span><Link to="/register">Sign up</Link>
+            {/* <span>Don't have an account? </span><Link to="/register">Sign up</Link> */}
+            <span>Don't have an account? </span><button onClick={formSwitch}>Sign up</button>
         </div>
     )
 }
