@@ -12,6 +12,18 @@ const Login = () => {
         <div>
             { isSignup ? <h2>Sign up</h2> : <h2>Sign in</h2> }
             <form>
+                { isSignup && (
+                    <>
+                    <label>First name</label>
+                    <input
+                        required
+                    ></input>
+                    <label>Last name</label>
+                    <input
+                        required
+                    ></input>
+                    </>
+                )}
                 <label>Email</label>
                 <input
                     required
