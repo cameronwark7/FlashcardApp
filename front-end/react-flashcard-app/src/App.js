@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Navbar from './components/Navbar'
 import AddCard from './components/AddCard';
 import Homepage from './components/Homepage';
-import Login from './components/Login';
+import Auth from './components/Auth';
 import Study from './components/Study';
 import Decks from './components/Decks';
 import CreateDeck from './components/CreateDeck';
@@ -40,7 +40,7 @@ function App() {
             <CreateDeck />
           </Route>
           <Route exact path="/login">
-            <Login />
+            <Auth />
           </Route>
         </Switch>
       </div>
