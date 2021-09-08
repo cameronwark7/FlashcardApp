@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { GoogleLogin } from 'react-google-login';
+import { useHistory } from 'react-router';
 
 const Login = () => {
 
     const [isSignup, setIsSignup] = useState(false);
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const formSwitch = () => {
         setIsSignup(!isSignup);
@@ -17,6 +19,7 @@ const Login = () => {
 
         try {
             dispatch({ type: 'AUTH', data: { result, token } });
+            history.push('/');
         } catch (error) {
             console.log(error);
         }
