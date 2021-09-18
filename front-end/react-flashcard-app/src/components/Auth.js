@@ -6,11 +6,32 @@ import { useHistory } from 'react-router';
 const Login = () => {
 
     const [isSignup, setIsSignup] = useState(false);
+
+
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [repeatPassword, setRepeatPassword] = useState('');
+
+
     const dispatch = useDispatch();
     const history = useHistory();
 
     const formSwitch = () => {
         setIsSignup(!isSignup);
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const formData = {
+            firstName,
+            lastName,
+            email,
+            password,
+            repeatPassword
+        }
+        console.log(formData);
     }
 
     const googleSuccess = async (res) => {
@@ -32,36 +53,48 @@ const Login = () => {
     return(
         <div>
             { isSignup ? <h2>Sign up</h2> : <h2>Sign in</h2> }
-            <form>
+            <form onSubmit={handleSubmit}>
                 { isSignup && (
                     <>
                     <label>First name</label>
                     <input
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
                         required
                     ></input>
                     <label>Last name</label>
                     <input
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
                         required
                     ></input>
                     </>
                 )}
                 <label>Email</label>
                 <input
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     required
                 ></input>
                 <label>Password</label>
                 <input
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     required
                 ></input>
                 { isSignup && (
                     <>
                     <label>Repeat password</label>
                     <input
+                        value={repeatPassword}
+                        onChange={(e) => setRepeatPassword(e.target.value)}
                         required
                     ></input>
                     </>
                 )}
-                { isSignup? <button>Sign up</button> : <button>Sign in</button> }
+                <button type="submit">
+                    { isSignup ? 'Sign up' : 'Sign in' }
+                </button>
                 <GoogleLogin 
                     clientId="432327020955-4dch0afndf1oo9nljla6kdcbd46dijet.apps.googleusercontent.com"
                     onSuccess={googleSuccess}
