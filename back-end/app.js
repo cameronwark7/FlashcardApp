@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
-const CONNECTION_URL = 'mongodb+srv://flashcard-app:flashcard-app123@cluster0.rkik8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const CONNECTION_URL = 'mongodb+srv://cameronwark7:test123@cluster0.nkmnz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 const port = process.env.PORT || 3001;
 
 mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })

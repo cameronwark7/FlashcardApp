@@ -31,7 +31,12 @@ const Login = () => {
             password,
             repeatPassword
         }
-        console.log(formData);
+        
+        if (isSignup) {
+
+        } else {
+            
+        }
     }
 
     const googleSuccess = async (res) => {
