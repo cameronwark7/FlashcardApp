@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { GoogleLogin } from 'react-google-login';
 import { useHistory } from 'react-router';
+import { signin, signup } from '../actions/auth.js';
 
 const Login = () => {
 
@@ -31,11 +32,12 @@ const Login = () => {
             password,
             repeatPassword
         }
+        console.log(formData);
         
         if (isSignup) {
-
+            dispatch(signup(formData, history));
         } else {
-            
+            dispatch(signin(formData, history));
         }
     }
 
