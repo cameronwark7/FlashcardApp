@@ -2,12 +2,12 @@ import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const Decks = () => {
-    // 'state.cards' references /reducers/index.js
+    // references /reducers/index.js
     const decks = useSelector((state) => state.decks);
     console.log(decks);
 
-    const history = useHistory();
     // redirect to create deck component
+    const history = useHistory();
     const createDeck = () => {
         history.push('/create-deck');
     }
@@ -18,7 +18,7 @@ const Decks = () => {
             {/* display a list of deck components with the .map() method and pass their names with props */}
             <div>
                 {/* {isPending && <p>Loading...</p>} */}
-                {decks && <p>{decks}</p>}
+                {decks && <p>{JSON.stringify(decks)}</p>}
             </div>
             <button onClick={createDeck}>Create Deck</button>
         </div>

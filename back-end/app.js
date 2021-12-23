@@ -66,11 +66,11 @@ app.post('/api/v1/create-deck', async (req, res) => {
     }, {
         upsert: true
     })
-    // .then((res) => {
-    //     res.send(res);
-    // }).catch((error) => {
-    //     console.log(error);
-    // })
+    .then((response) => {
+        res.send(response);
+    }).catch((error) => {
+        console.log(error);
+    })
 });
 
 app.get('/api/v1/get-cards', (req, res) => {
@@ -86,15 +86,15 @@ app.get('/api/v1/get-cards', (req, res) => {
 });
 
 // return a list of unique decks (alphabetecal order)
-app.get('/api/v1/unique-decks', (req, res) => {
-    // Deck.find().distinct('name') // looking for unique name: key values in the Cards collection.
-    //     .then((data) => {
-    //         console.log(data);
-    //         res.send(data);
-    //     })
-    //     .catch((err) => {
-    //         console.log(err);
-    //     });
+app.post('/api/v1/unique-decks', async (req, res) => {
+    await Deck.find({ email: req.body.email })
+        .then((data) => {
+            console.log(data);
+            res.send(data);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
 });
 
 // endpoint for when the user tries to sign in with manual login.

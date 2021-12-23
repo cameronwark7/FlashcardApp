@@ -12,8 +12,6 @@ const CreateDeck = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // dispatch(createDeck(postData));
-
         const profile = localStorage.getItem('profile');
 
         const data = {
@@ -21,7 +19,7 @@ const CreateDeck = () => {
             email: JSON.parse(profile).result.email
         };
 
-        api.createDeck(data);
+        dispatch(createDeck(data));
         history.push('/decks'); // change to only redirect on 200 status eventually
     }
 

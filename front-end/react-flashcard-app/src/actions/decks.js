@@ -1,10 +1,11 @@
 import * as api from '../api';
 
 // using thunk to handle asynchronous logic
-export const getDecks = () => async (dispatch) => {
+export const getDecks = (obj) => async (dispatch) => {
     try 
     {
-        const { data } = await api.fetchDecks();
+        console.log(obj.email);
+        const { data } = await api.fetchDecks(obj);
         // redux-thunk requires 'dispatch(action)' instead of 'return action'
         dispatch({ type: 'FETCH_ALL_DECKS', payload: data });
     } 
@@ -14,12 +15,14 @@ export const getDecks = () => async (dispatch) => {
     }
 }
 
-export const createDeck = (post) => async (dispatch) => {
+export const createDeck = (obj) => async (dispatch) => {
     try
     {
-        const { data } = await api.createDeck(post);
+        const { data } = await api.createDeck(obj);
+        // console.log(data.decks)
 
-        dispatch({ type: 'CREATE_DECK', payload: data });
+        dispatch({ type: 'CREATE_DECK', payload: JSON.stringify(data.decks) });
+        // dispatch({ type: 'CREATE_DECK', payload: {key: "value"} });
     }
     catch (error)
     {

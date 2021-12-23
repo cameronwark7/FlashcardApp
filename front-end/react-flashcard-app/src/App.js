@@ -16,7 +16,12 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getDecks());
+    const user = JSON.parse(localStorage.getItem('profile'));
+    const email = user.result.email;
+    const obj = {
+      email
+    }
+    dispatch(getDecks(obj));
   }, [dispatch]);
 
   return (
