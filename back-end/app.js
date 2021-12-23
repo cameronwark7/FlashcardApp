@@ -60,7 +60,7 @@ app.post('/api/v1/create-deck', async (req, res) => {
     await User.findOneAndUpdate({
         email: req.body.email // documents where email == email sent from frontend
     }, {
-        $push: {
+        $addToSet: { // add it to the array only if unique
             decks: newDeck // put new deck in decks array
         }
     })
