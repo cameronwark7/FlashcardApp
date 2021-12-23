@@ -1,9 +1,8 @@
 export default (decks = [], action) => {
     switch (action.type) {
         case 'FETCH_ALL_DECKS':
-            return action.payload;
+            return action.payload[0].decks;
         case 'CREATE_DECK':
-            console.log(JSON.parse(action.payload))
             return JSON.parse(action.payload);
             // return [...decks, action.payload];
         default:

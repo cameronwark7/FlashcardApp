@@ -89,7 +89,6 @@ app.get('/api/v1/get-cards', (req, res) => {
 app.post('/api/v1/unique-decks', async (req, res) => {
     await Deck.find({ email: req.body.email })
         .then((data) => {
-            console.log(data);
             res.send(data);
         })
         .catch((err) => {
