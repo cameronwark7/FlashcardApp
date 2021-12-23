@@ -2,19 +2,26 @@ import { useHistory } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createDeck } from '../actions/decks';
+import * as api from '../api/index.js'
 
 const CreateDeck = () => {
 
-    const [postData, setPostData] = useState({ name: '' });
+    const [deckName, setDeckName] = useState('');
     const history = useHistory();
     const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        // dispatch(createDeck(postData));
 
-        console.log(postData);
+        const profile = localStorage.getItem('profile');
 
-        dispatch(createDeck(postData));
+        const data = {
+            deckName,
+            email: JSON.parse(profile).result.email
+        };
+
+        api.createDeck(data);
 
         history.push('/decks'); // change to only redirect on 200 status eventually
     }
@@ -28,8 +35,8 @@ const CreateDeck = () => {
             <form onSubmit={handleSubmit}>
                 <label>Deck Name: </label>
                 <input
-                    value={postData.name}
-                    onChange={(e) => setPostData({name: e.target.value })}
+                    value={deckName.name}
+                    onChange={(e) => setDeckName(e.target.value)}
                     required
                 ></input>
                 <button>Create</button>

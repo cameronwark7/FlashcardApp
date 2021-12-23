@@ -49,20 +49,26 @@ app.post('/api/v1/add-card', (req, res) => {
 });
 
 // add deck if name is unique
-app.post('/api/v1/create-deck', (req, res) => {
-    console.log(req.body.name); // showing up properly
-    const deck = new Deck({
-        name: req.body.name
-    });
+app.post('/api/v1/create-deck', async (req, res) => {
+    console.log(req.body);
 
-    deck.save() // being put into database properly
-        .then((result) => {
-            console.log(result);
-            res.send(result.name)
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+    const newDeck = {
+        name: req.body.deckName,
+        cards: []
+    }
+
+    await User.findOneAndUpdate({
+        email: req.body.email // documents where email == email sent from frontend
+    }, {
+        $push: {
+            decks: newDeck // put new deck in decks array
+        }
+    })
+    // .then((res) => {
+    //     res.send(res);
+    // }).catch((error) => {
+    //     console.log(error);
+    // })
 });
 
 app.get('/api/v1/get-cards', (req, res) => {
