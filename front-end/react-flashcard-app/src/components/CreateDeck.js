@@ -22,7 +22,6 @@ const CreateDeck = () => {
         };
 
         api.createDeck(data);
-
         history.push('/decks'); // change to only redirect on 200 status eventually
     }
 

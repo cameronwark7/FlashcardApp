@@ -57,12 +57,14 @@ app.post('/api/v1/create-deck', async (req, res) => {
         cards: []
     }
 
-    await User.findOneAndUpdate({
-        email: req.body.email // documents where email == email sent from frontend
+    await Deck.findOneAndUpdate({
+        email: req.body.email // query
     }, {
         $addToSet: { // add it to the array only if unique
             decks: newDeck // put new deck in decks array
         }
+    }, {
+        upsert: true
     })
     // .then((res) => {
     //     res.send(res);
@@ -85,14 +87,14 @@ app.get('/api/v1/get-cards', (req, res) => {
 
 // return a list of unique decks (alphabetecal order)
 app.get('/api/v1/unique-decks', (req, res) => {
-    Deck.find().distinct('name') // looking for unique name: key values in the Cards collection.
-        .then((data) => {
-            console.log(data);
-            res.send(data);
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+    // Deck.find().distinct('name') // looking for unique name: key values in the Cards collection.
+    //     .then((data) => {
+    //         console.log(data);
+    //         res.send(data);
+    //     })
+    //     .catch((err) => {
+    //         console.log(err);
+    //     });
 });
 
 // endpoint for when the user tries to sign in with manual login.
