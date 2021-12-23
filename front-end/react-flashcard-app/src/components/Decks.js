@@ -17,11 +17,10 @@ const Decks = () => {
             <h1>Decks</h1>
             {/* display a list of deck components with the .map() method and pass their names with props */}
             <div>
-                {/* {isPending && <p>Loading...</p>} */}
-                {/* {decks && <p>{JSON.stringify(decks)}</p>} */}
                 { decks && decks.map((deck) => {
                     return <p>{deck.name}</p>
                 }) }
+                { decks.length == 0 && <p>No decks</p>}
             </div>
             <button onClick={createDeck}>Create Deck</button>
         </div>
