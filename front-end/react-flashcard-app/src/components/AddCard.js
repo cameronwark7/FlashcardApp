@@ -1,29 +1,31 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import * as api from '../api';
 
 const AddCard = () => {
 
-    const [deck, setDeck] = useState('default');
+    const [deckName, setDeckName] = useState('');
     const [front, setFront] = useState('');
     const [back, setBack] = useState('');
+    const profile = localStorage.getItem('profile');
 
-    const decks = useSelector((state) => state.decks);
-    console.log(decks);
+    const decks = useSelector((state) => state.decks);;
+    
+    useEffect(()=> {
+        setDeckName(decks[0]?.name);
+    }, [decks])
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const card = {deck, front, back};
-        console.log(card);
+        const obj = { 
+            deckName, 
+            front, 
+            back,
+            email: JSON.parse(profile).result.email
+        };
 
-        // fetch('http://localhost:3001/api/v1/add-card', {
-        //     method: 'POST',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify(card)
-        // }).then((res) => {
-        //     console.log(res);
-        // }).catch((err) => {
-        //     console.log(err);
-        // })
+        api.addCard(obj);
     }
 
     return(
@@ -33,13 +35,13 @@ const AddCard = () => {
                 <label>Deck: </label>
                 {decks && 
                     <select
-                    value={deck}
-                    onChange={(e) => setDeck(e.target.value)}
+                    value={deckName}
+                    onChange={(e) => setDeckName(e.target.value)}
                     >
                     {/* <option value="default">Default</option>
                     <option value="deck 2">Deck 2</option> */}
-                    {decks.map((deck) => {
-                        return <option value={deck.name}>{deck.name}</option>
+                    {decks.map((val) => {
+                        return <option value={val.name}>{val.name}</option>
                     })}
                     </select>   
                 }

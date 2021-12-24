@@ -32,20 +32,14 @@ mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: tr
 mongoose.set('useFindAndModify', false);
 
 // add card to deck
-app.post('/api/v1/add-card', (req, res) => {
-    const card = new Card({
+app.post('/api/v1/add-card', async (req, res) => {
+    console.log(req.body);
+    const card = {
         front: req.body.front,
-        back: req.body.back,
-        deck: req.body.deck
-    });
+        back: req.body.back
+    }
 
-    card.save()
-        .then((result) => {
-            res.send(result)
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+    await Deck.updateOne( {email: req.body.email, "decks.name": req.body.deckName}, {$push: {'decks.$.cards': card}} )
 });
 
 // add deck if name is unique
