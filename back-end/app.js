@@ -106,8 +106,6 @@ app.post('/api/v1/user/signin', async (req, res) => {
         // try finding existing user.
         const existingUser = await User.findOne({ email });
 
-        console.log(existingUser);
-
         // send 404 if user does not exist in the database. 
         if(!existingUser) return res.status(404).json({ message: "User doesn't exist." });
 
