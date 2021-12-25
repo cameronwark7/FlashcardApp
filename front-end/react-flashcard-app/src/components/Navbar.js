@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router';
+import { Button, ButtonGroup } from '@chakra-ui/react'
 
 const Navbar = () => {
 
@@ -24,16 +25,33 @@ const Navbar = () => {
 
     return(
         <div>
-            <Link to="/">Home</Link>
+            {/* <Link to="/">Home</Link> */}
             {user ? (
                 <>
-                <Link to="/add-card">Add Cards</Link>
-                <Link to="/study">Study</Link>
-                <Link to="/decks">My Decks</Link>
-                <button onClick={logout}>Logout</button>
+                <ButtonGroup variant='outline'>
+                    <Button>
+                        <Link to="/">Home</Link>
+                    </Button>
+                    <Button>
+                        <Link to="/add-card">Add Cards</Link>
+                    </Button>
+                    <Button>
+                        <Link to="/study">Study</Link>
+                    </Button>
+                    <Button>
+                        <Link to="/decks">My Decks</Link>
+                    </Button>
+                    <Button onClick={logout} colorScheme='blue'>Logout</Button>
+                </ButtonGroup>
+                {/* <button onClick={logout}>Logout</button> */}
                 </>
             ) : (
-                <Link to="/login">Sign in</Link>
+                <>
+                <ButtonGroup variant='outline'>
+                    <Button><Link to="/">Home</Link></Button>
+                    <Button colorScheme='blue'><Link to="/login">Sign in</Link></Button>
+                </ButtonGroup>
+                </>
             )}
         </div>
     )

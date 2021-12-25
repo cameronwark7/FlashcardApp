@@ -17,11 +17,13 @@ function App() {
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('profile'));
-    const email = user.result.email;
-    const obj = {
-      email
+    if (user != null) {
+      const email = user.result.email;
+      const obj = {
+        email
+      }
+      dispatch(getDecks(obj));
     }
-    dispatch(getDecks(obj));
   }, [dispatch]);
 
   return (
