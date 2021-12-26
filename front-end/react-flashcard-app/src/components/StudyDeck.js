@@ -9,7 +9,9 @@ const StudyDeck = () => {
     const { deckName } = useParams();
     const decks = useSelector((state) => state.decks);
     const [selectedDeck, setSelectedDeck] = useState(false);
+    const [selectedDeckRandom, setSelectedDeckRandom] = useState(false);
     const [showCard, setShowCard] = useState(false);
+    const [deckArrayIndex, setDeckArrayIndex] = useState(0);
 
     useEffect(() => {
         if (decks.length != 0) {
@@ -17,9 +19,17 @@ const StudyDeck = () => {
                 return obj.name == deckName;
             });
             setSelectedDeck(x[0].cards);
+            setRandomizedDeck(x[0].cards);
             // console.log(x[0].cards);
         }
     }, [decks]);
+
+    const setRandomizedDeck = (arr) => {
+        // randomize 'selectedDeck' and set it to 'selectedDeckRandom'
+
+        // set useState variable
+        setSelectedDeckRandom(arr);
+    }
 
     const showButtonClick = () => {
         setShowCard(true);
@@ -30,27 +40,59 @@ const StudyDeck = () => {
     }
 
     const goodButtonClick = () => {
+        setShowCard(false);
 
+        // make a new array and delete the current index
+        let arr = selectedDeckRandom.slice();
+        arr.splice(deckArrayIndex, 1);
+
+        // get the max index of the array, and randomly choose an integer between 0 and that index.
+        const randomIndex = Math.floor(Math.random() * arr.length);
+        setDeckArrayIndex(randomIndex);
+
+        setSelectedDeckRandom(arr);
+
+        // if (index > -1) {
+        //     array.splice(index, 1);
+        // }
+
+    }
+
+    const rebuildDeck = () => {
+        setSelectedDeckRandom(selectedDeck);
+        console.log(selectedDeck)
     }
 
     return(
         <div>
-            { selectedDeck && (
+            { selectedDeckRandom && (
                 <>
-                <div>{JSON.stringify(selectedDeck)}</div>
-                <div>{selectedDeck[0]?.front}</div>
+                <div>{JSON.stringify(selectedDeckRandom)}</div>
+
+                {selectedDeckRandom.length > 0 ? (
+                <>
                 
-                { showCard ? 
+                    <div>{selectedDeckRandom[deckArrayIndex]?.front}</div>
+
+                    { showCard ? 
+                    <>
+                        <div>{selectedDeckRandom[deckArrayIndex]?.back}</div>
+                        <ButtonGroup>
+                        <Button onClick={againButtonClick}>Again</Button>
+                        <Button onClick={goodButtonClick}>Good</Button>
+                        </ButtonGroup>
+                    </> 
+                    : 
+                    <Button onClick={showButtonClick}>Show</Button> }
+                    
+                </>) 
+                : 
                 <>
-                    <div>{selectedDeck[0]?.back}</div>
-                    <ButtonGroup>
-                    <Button onClick={againButtonClick}>Again</Button>
-                    <Button onClick={goodButtonClick}>Good</Button>
-                    </ButtonGroup>
-                </> 
-                : <Button onClick={showButtonClick}>Show</Button>}
-                </>
-                ) }
+                    <div>Deck complete!</div><Button onClick={rebuildDeck}>Rebuild Deck</Button>
+                </>}
+
+            </>
+             ) }
         </div>
     )
 }
