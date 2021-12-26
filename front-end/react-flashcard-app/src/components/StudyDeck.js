@@ -36,7 +36,14 @@ const StudyDeck = () => {
     }
 
     const againButtonClick = () => {
+        setShowCard(false);
 
+        // Generate a new index that is not the same as the previous index
+        let randomIndex = null;
+        do {
+            randomIndex = Math.floor(Math.random() * selectedDeckRandom.length);
+        } while (randomIndex == deckArrayIndex);
+        setDeckArrayIndex(randomIndex);
     }
 
     const goodButtonClick = () => {
