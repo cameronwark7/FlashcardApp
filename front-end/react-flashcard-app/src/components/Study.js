@@ -19,7 +19,6 @@ const Study = () => {
 
     return(
         <div>
-            <h1>Study</h1>
             <label>Deck: </label>
             <select
                 value={deck}

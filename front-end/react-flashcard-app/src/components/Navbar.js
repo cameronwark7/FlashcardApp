@@ -25,10 +25,9 @@ const Navbar = () => {
 
     return(
         <div>
-            {/* <Link to="/">Home</Link> */}
             {user ? (
                 <>
-                <ButtonGroup variant='outline'>
+                <ButtonGroup variant='outline' colorScheme='blue'>
                     <Button>
                         <Link to="/">Home</Link>
                     </Button>
@@ -41,15 +40,15 @@ const Navbar = () => {
                     <Button>
                         <Link to="/decks">My Decks</Link>
                     </Button>
-                    <Button onClick={logout} colorScheme='blue'>Logout</Button>
+                    <Button onClick={logout} colorScheme='grey'>Logout</Button>
                 </ButtonGroup>
                 {/* <button onClick={logout}>Logout</button> */}
                 </>
             ) : (
                 <>
-                <ButtonGroup variant='outline'>
+                <ButtonGroup variant='outline' colorScheme='blue'>
                     <Button><Link to="/">Home</Link></Button>
-                    <Button colorScheme='blue'><Link to="/login">Sign in</Link></Button>
+                    <Button colorScheme='grey'><Link to="/login">Sign in</Link></Button>
                 </ButtonGroup>
                 </>
             )}

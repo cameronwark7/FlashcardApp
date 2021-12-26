@@ -30,7 +30,6 @@ const AddCard = () => {
 
     return(
         <div>
-            <h2>Add Card</h2>
             <form onSubmit={handleSubmit}>
                 <label>Deck: </label>
                 {decks && 
