@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Button } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import CreateDeck from './CreateDeck';
 
 
 const Study = () => {
@@ -15,7 +16,14 @@ const Study = () => {
     }, [decks]);
 
     const study = () => {
-        history.push(`/study/${deckName}`)
+        const x = decks.filter(obj => {
+            return obj.name == deckName;
+        });
+        if (x[0].cards.length > 0) {
+            history.push(`/study/${deckName}`)
+        } else {
+            alert(`There are no cards in deck ${deckName}`);
+        }
     }
 
     return(
