@@ -2,7 +2,8 @@ import { useHistory } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createDeck } from '../actions/decks';
-import * as api from '../api/index.js'
+import * as api from '../api/index.js';
+import { Button } from '@chakra-ui/react';
 
 const CreateDeck = () => {
 
@@ -36,9 +37,11 @@ const CreateDeck = () => {
                     onChange={(e) => setDeckName(e.target.value)}
                     required
                 ></input>
-                <button>Create</button>
+                <br/>
+
+                <Button type='submit'>Create</Button>
+                <Button onClick={cancel}>Cancel</Button>
             </form>
-            <button onClick={cancel}>Cancel</button>
         </div>
     )
 }

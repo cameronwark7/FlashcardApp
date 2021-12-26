@@ -1,5 +1,6 @@
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { Button } from '@chakra-ui/react';
 
 const Decks = () => {
     // references /reducers/index.js
@@ -14,15 +15,13 @@ const Decks = () => {
 
     return(
         <div>
-            <h1>Decks</h1>
-            {/* display a list of deck components with the .map() method and pass their names with props */}
             <div>
                 { decks && decks.map((deck) => {
                     return <p>{deck.name}</p>
                 }) }
                 { decks.length == 0 && <p>No decks</p>}
             </div>
-            <button onClick={createDeck}>Create Deck</button>
+            <Button onClick={createDeck}>Create Deck</Button>
         </div>
     )
 }

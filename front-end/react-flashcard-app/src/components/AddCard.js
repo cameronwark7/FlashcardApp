@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import * as api from '../api';
+import { Button } from '@chakra-ui/react';
 
 const AddCard = () => {
 
@@ -64,7 +65,7 @@ const AddCard = () => {
                 ></textarea>
                 <br/>
 
-                <button>Add Card</button>
+                <Button type='submit'>Add Card</Button>
             </form>
         </div>
     )

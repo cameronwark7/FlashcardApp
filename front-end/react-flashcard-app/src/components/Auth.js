@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { GoogleLogin } from 'react-google-login';
 import { useHistory } from 'react-router';
 import { signin, signup } from '../actions/auth.js';
+import { Button } from '@chakra-ui/react';
 
 const Login = () => {
 
@@ -107,10 +108,10 @@ const Login = () => {
                     <br/>
                     </>
                 )}
-                
-                <button type="submit">
+
+                <Button type='submit'>
                     { isSignup ? 'Sign up' : 'Sign in' }
-                </button>
+                </Button>
                 <br/>
 
                 <GoogleLogin 
