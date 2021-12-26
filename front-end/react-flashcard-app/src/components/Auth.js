@@ -69,12 +69,15 @@ const Login = () => {
                         onChange={(e) => setFirstName(e.target.value)}
                         required
                     ></input>
+                    <br/>
+
                     <label>Last name</label>
                     <input
                         value={lastName}
                         onChange={(e) => setLastName(e.target.value)}
                         required
                     ></input>
+                    <br/>
                     </>
                 )}
                 <label>Email</label>
@@ -83,12 +86,16 @@ const Login = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     required
                 ></input>
+                <br/>
+
                 <label>Password</label>
                 <input
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 ></input>
+                <br/>
+
                 { isSignup && (
                     <>
                     <label>Repeat password</label>
@@ -97,11 +104,15 @@ const Login = () => {
                         onChange={(e) => setRepeatPassword(e.target.value)}
                         required
                     ></input>
+                    <br/>
                     </>
                 )}
+                
                 <button type="submit">
                     { isSignup ? 'Sign up' : 'Sign in' }
                 </button>
+                <br/>
+
                 <GoogleLogin 
                     clientId="432327020955-4dch0afndf1oo9nljla6kdcbd46dijet.apps.googleusercontent.com"
                     onSuccess={googleSuccess}

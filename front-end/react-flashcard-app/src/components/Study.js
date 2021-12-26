@@ -26,6 +26,7 @@ const Study = () => {
             >
                 <option value="default">Default</option>
             </select>
+            <br/>
             <button onClick={study}>Study</button>
         </div>
     )
