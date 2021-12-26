@@ -11,11 +11,11 @@ const AddCard = () => {
     const [back, setBack] = useState('');
     const profile = localStorage.getItem('profile');
 
-    const decks = useSelector((state) => state.decks);;
+    const decks = useSelector((state) => state.decks);
     
     useEffect(()=> {
         setDeckName(decks[0]?.name);
-    }, [decks])
+    }, [decks]);
 
     const handleSubmit = (e) => {
         e.preventDefault();

@@ -1,32 +1,34 @@
-import { useState } from "react";
+import { useEffect, useState } from 'react';
 import { Button } from '@chakra-ui/react';
+import { useSelector } from 'react-redux';
+
 
 const Study = () => {
 
-    const [deck, setDeck] = useState('default');
+    const [deckName, setDeckName] = useState('');
+    const decks = useSelector((state) => state.decks);
+
+    useEffect(() => {
+        setDeckName(decks[0]?.name);
+    }, [decks]);
 
     const study = () => {
-        // fetch('http://localhost:3001/api/v1/get-cards')
-        //     .then((res) => {
-        //         return res.json();
-        //     })
-        //     .then((res) => {
-        //         console.log(res);
-        //     })
-        //     .catch((err) => {
-        //         console.log(err);
-        //     });
+        console.log(deckName);
     }
 
     return(
         <div>
             <label>Deck: </label>
-            <select
-                value={deck}
-                onChange={(e) => setDeck(e.target.value)}
-            >
-                <option value="default">Default</option>
-            </select>
+            {decks && 
+                    <select
+                    value={deckName}
+                    onChange={(e) => setDeckName(e.target.value)}
+                    >
+                    {decks.map((val) => {
+                        return <option value={val.name}>{val.name}</option>
+                    })}
+                    </select>   
+                }
             <br/>
             <Button onClick={study}>Study</Button>
         </div>
