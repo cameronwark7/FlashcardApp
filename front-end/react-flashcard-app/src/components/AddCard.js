@@ -38,8 +38,6 @@ const AddCard = () => {
                     value={deckName}
                     onChange={(e) => setDeckName(e.target.value)}
                     >
-                    {/* <option value="default">Default</option>
-                    <option value="deck 2">Deck 2</option> */}
                     {decks.map((val) => {
                         return <option value={val.name}>{val.name}</option>
                     })}

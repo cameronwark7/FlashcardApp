@@ -5,7 +5,6 @@ import { Button } from '@chakra-ui/react';
 const Decks = () => {
     // references /reducers/index.js
     const decks = useSelector((state) => state.decks);
-    console.log(decks);
 
     // redirect to create deck component
     const history = useHistory();
