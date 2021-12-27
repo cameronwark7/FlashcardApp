@@ -19,7 +19,7 @@ const Decks = () => {
             <VStack
             divider={<StackDivider borderColor='gray.200' />}
             spacing={3}
-            // align='stretch' // moves items from middle of screen to the left
+            align='stretch' // moves items from middle of screen to the left
             >
                 { decks && decks.map((deck) => {
                     return <DeckListBox deck={deck} />

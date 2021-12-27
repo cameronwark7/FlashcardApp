@@ -8,6 +8,7 @@ import Study from './components/Study';
 import Decks from './components/Decks';
 import CreateDeck from './components/CreateDeck';
 import StudyDeck from './components/StudyDeck';
+import DeckView from './components/DeckView';
 
 import { getDecks } from './actions/decks';
 import { useDispatch } from 'react-redux';
@@ -46,6 +47,9 @@ function App() {
           </Route>
           <Route exact path="/decks">
             <Decks />
+          </Route>
+          <Route exact path="/decks/:deckName">
+            <DeckView />
           </Route>
           <Route exact path="/create-deck">
             <CreateDeck />
