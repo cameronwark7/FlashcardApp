@@ -1,6 +1,7 @@
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Button } from '@chakra-ui/react';
+import DeckListBox from './DeckListBox';
 
 const Decks = () => {
     // references /reducers/index.js
@@ -16,7 +17,7 @@ const Decks = () => {
         <div>
             <div>
                 { decks && decks.map((deck) => {
-                    return <p>{deck.name}</p>
+                    return <DeckListBox deck={deck} />
                 }) }
                 { decks.length == 0 && <p>No decks</p>}
             </div>
