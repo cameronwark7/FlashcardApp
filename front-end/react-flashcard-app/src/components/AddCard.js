@@ -8,6 +8,7 @@ import {
     FormLabel,
     FormErrorMessage,
     FormHelperText,
+    Select
   } from '@chakra-ui/react';
 
 const AddCard = () => {
@@ -38,16 +39,18 @@ const AddCard = () => {
     return(
         <div>
             <form onSubmit={handleSubmit}>
-                <label>Deck: </label>
-                {decks && 
-                    <select
-                    value={deckName}
-                    onChange={(e) => setDeckName(e.target.value)}
-                    >
-                    {decks.map((val) => {
-                        return <option value={val.name}>{val.name}</option>
-                    })}
-                    </select>   
+                {decks &&  
+                    <FormControl>
+                        <FormLabel htmlFor='deck'>Deck</FormLabel>
+                        <Select
+                        id='deck'
+                        onChange={(e) => setDeckName(e.target.value)}
+                        >
+                            {decks.map((val) => {
+                                return <option value={val.name}>{val.name}</option>
+                            })}
+                        </Select>
+                    </FormControl>
                 }
                 <br/>
 
