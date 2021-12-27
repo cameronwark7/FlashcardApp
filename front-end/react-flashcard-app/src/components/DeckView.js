@@ -10,7 +10,9 @@ const DeckView = () => {
     const decks = useSelector((state) => state.decks);
     const [selectedDeck, setSelectedDeck] = useState(false);
 
-    console.log(selectedDeck)
+    let selectedIndex = 0;
+    const [front, setFront] = useState('');
+    const [back, setBack] = useState('');
 
     useEffect(() => {
         if (decks.length != 0) {
@@ -21,6 +23,12 @@ const DeckView = () => {
         }
     }, [decks]);
 
+    const setForm = (card, index) => {
+        selectedIndex = index;
+        setFront(card.front);
+        setBack(card.back);
+    }
+
     return(
         <div>
             <p>{deckName}</p>
@@ -29,10 +37,10 @@ const DeckView = () => {
                 divider={<StackDivider borderColor='gray.200' />}
                 spacing={3}
                 w={'60%'}
-                align='stretch' // moves items from middle of screen to the left
+                align='stretch'
                 >
-                    { selectedDeck && selectedDeck.map((deck) => {
-                            return <div>{deck.front}</div>
+                    { selectedDeck && selectedDeck.map((card, index) => {
+                            return <div onClick={() => setForm(card, index)}>{card.front}</div>
                     }) }
                     { selectedDeck.length == 0 && <Center>No cards in deck</Center> }
                 </VStack>
@@ -41,14 +49,16 @@ const DeckView = () => {
                 >
                     <Text>Front:</Text>
                     <Textarea
-                    value={'front'}
+                    value={front}
                     placeholder='Front'
+                    onChange={(e) => setFront(e.target.value)}
                     ></Textarea>
 
                     <Text>Back:</Text>
                     <Textarea
-                    value={'back'}
+                    value={back}
                     placeholder='Back'
+                    onChange={(e) => setBack(e.target.value)}
                     ></Textarea>
                     <Button>Save</Button>
                 </Box>
