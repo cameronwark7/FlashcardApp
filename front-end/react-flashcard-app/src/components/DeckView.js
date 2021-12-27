@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { Stack, HStack, VStack, StackDivider, Box, Button, Textarea, Text } from '@chakra-ui/react';
+import { Center, Stack, HStack, VStack, StackDivider, Box, Button, Textarea, Text } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 
@@ -34,7 +34,7 @@ const DeckView = () => {
                     { selectedDeck && selectedDeck.map((deck) => {
                             return <div>{deck.front}</div>
                     }) }
-                    { selectedDeck.length == 0 && <p>No decks</p> }
+                    { selectedDeck.length == 0 && <Center>No cards in deck</Center> }
                 </VStack>
                 <Box
                 w={'40%'}
