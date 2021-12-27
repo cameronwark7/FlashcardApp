@@ -11,7 +11,7 @@ const DeckView = () => {
     const decks = useSelector((state) => state.decks);
     const [selectedDeck, setSelectedDeck] = useState(false);
 
-    const [selectedIndex, setSelectedIndex] = useState(0);
+    const [selectedIndex, setSelectedIndex] = useState(null);
     const [front, setFront] = useState('');
     const [back, setBack] = useState('');
 
@@ -81,7 +81,7 @@ const DeckView = () => {
                     placeholder='Back'
                     onChange={(e) => setBack(e.target.value)}
                     ></Textarea>
-                    <Button onClick={saveCard}>Save</Button>
+                    {selectedIndex != null ? <Button onClick={saveCard}>Save</Button> : <Button isDisabled onClick={saveCard}>Save</Button>}
                 </Box>
             </HStack>
         </div>
