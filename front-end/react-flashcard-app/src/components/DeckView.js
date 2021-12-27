@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Center, Stack, HStack, VStack, StackDivider, Box, Button, Textarea, Text } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
+import * as api from '../api/index';
 
 const DeckView = () => {
 
@@ -10,7 +11,7 @@ const DeckView = () => {
     const decks = useSelector((state) => state.decks);
     const [selectedDeck, setSelectedDeck] = useState(false);
 
-    let selectedIndex = 0;
+    const [selectedIndex, setSelectedIndex] = useState(0);
     const [front, setFront] = useState('');
     const [back, setBack] = useState('');
 
@@ -24,9 +25,29 @@ const DeckView = () => {
     }, [decks]);
 
     const setForm = (card, index) => {
-        selectedIndex = index;
+        setSelectedIndex(index);
         setFront(card.front);
         setBack(card.back);
+    }
+
+    const saveCard = () => {
+        // copy the array without the reference
+        let selectedDeckClone = [...selectedDeck];
+
+        // update the cloned deck
+        const newValues = { front, back }
+        selectedDeckClone[selectedIndex] = newValues;
+
+        // get all necessary values to update deck
+        const profile = localStorage.getItem('profile');
+        const obj = {
+            deckName,
+            newCards: selectedDeckClone,
+            email: JSON.parse(profile).result.email
+        }
+
+        // send updated deck to backend
+        api.updateDeck(obj);
     }
 
     return(
@@ -60,7 +81,7 @@ const DeckView = () => {
                     placeholder='Back'
                     onChange={(e) => setBack(e.target.value)}
                     ></Textarea>
-                    <Button>Save</Button>
+                    <Button onClick={saveCard}>Save</Button>
                 </Box>
             </HStack>
         </div>

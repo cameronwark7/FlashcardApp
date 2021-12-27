@@ -67,6 +67,10 @@ app.post('/api/v1/create-deck', async (req, res) => {
     })
 });
 
+app.post('/api/v1/update-deck', (req, res) => {
+    console.log(req.body);
+});
+
 app.get('/api/v1/get-cards', (req, res) => {
 
     // returns all cards
