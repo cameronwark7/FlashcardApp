@@ -3,6 +3,13 @@ import { Button } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import CreateDeck from './CreateDeck';
+import {
+    FormControl,
+    FormLabel,
+    FormErrorMessage,
+    FormHelperText,
+    Select
+  } from '@chakra-ui/react';
 
 
 const Study = () => {
@@ -28,17 +35,19 @@ const Study = () => {
 
     return(
         <div>
-            <label>Deck: </label>
-            {decks && 
-                    <select
-                    value={deckName}
+            {decks &&  
+                <FormControl>
+                    <FormLabel htmlFor='deck'>Deck</FormLabel>
+                    <Select 
+                    id='deck'
                     onChange={(e) => setDeckName(e.target.value)}
                     >
-                    {decks.map((val) => {
-                        return <option value={val.name}>{val.name}</option>
-                    })}
-                    </select>   
-                }
+                        {decks.map((val) => {
+                            return <option value={val.name}>{val.name}</option>
+                        })}
+                    </Select>
+                </FormControl>
+            }
             <br/>
             <Button onClick={study}>Study</Button>
         </div>
