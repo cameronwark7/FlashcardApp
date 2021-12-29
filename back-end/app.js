@@ -77,6 +77,19 @@ app.post('/api/v1/update-deck', async (req, res) => {
     })
 });
 
+app.delete('/api/v1/delete-deck', async (req, res) => {
+    console.log(req.body);
+
+    await Deck.findOneAndUpdate({
+        email: req.body.email
+    }, {
+        $pull: {
+            decks: { name: req.body.deckName }
+        }
+    })
+
+});
+
 app.get('/api/v1/get-cards', (req, res) => {
 
     // returns all cards

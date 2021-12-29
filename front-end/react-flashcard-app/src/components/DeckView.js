@@ -30,6 +30,10 @@ const DeckView = () => {
         setBack(card.back);
     }
 
+    const deleteCard = () => {
+        
+    }
+
     const saveCard = () => {
         // copy the array without the reference
         let selectedDeckClone = [...selectedDeck];
