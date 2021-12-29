@@ -67,8 +67,14 @@ app.post('/api/v1/create-deck', async (req, res) => {
     })
 });
 
-app.post('/api/v1/update-deck', (req, res) => {
+app.post('/api/v1/update-deck', async (req, res) => {
     console.log(req.body);
+    await Deck.findOneAndUpdate({
+        email: req.body.email,
+        'decks.name': req.body.deckName
+    }, {
+        'decks.$.cards': req.body.newCards
+    })
 });
 
 app.get('/api/v1/get-cards', (req, res) => {

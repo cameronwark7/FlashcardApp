@@ -81,7 +81,7 @@ const DeckView = () => {
                     placeholder='Back'
                     onChange={(e) => setBack(e.target.value)}
                     ></Textarea>
-                    {selectedIndex != null ? <Button onClick={saveCard}>Save</Button> : <Button isDisabled onClick={saveCard}>Save</Button>}
+                    {selectedIndex != null ? <Button onClick={saveCard}>Save</Button> : <Button isDisabled>Save</Button>}
                 </Box>
             </HStack>
         </div>
