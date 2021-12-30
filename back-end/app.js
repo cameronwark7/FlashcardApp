@@ -52,7 +52,11 @@ app.delete('/api/v1/delete-card', async (req, res) => {
         $pull: {
             'decks.$.cards': { front: req.body.card.front }
         }
-    })
+    }).then((data) => {
+        res.send(data);
+    }).catch((err) => {
+        console.log(err);
+    });
 });
 
 // add deck if name is unique
@@ -99,7 +103,11 @@ app.delete('/api/v1/delete-deck', async (req, res) => {
         $pull: {
             decks: { name: req.body.deckName }
         }
-    })
+    }).then((data) => {
+        res.send(data);
+    }).catch((err) => {
+        console.log(err);
+    });
 
 });
 

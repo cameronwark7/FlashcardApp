@@ -27,7 +27,7 @@ const Navbar = () => {
         <div>
             {user ? (
                 <>
-                <ButtonGroup variant='outline' colorScheme='blue'>
+                <ButtonGroup>
                     <Button>
                         <Link to="/">Home</Link>
                     </Button>
@@ -40,15 +40,15 @@ const Navbar = () => {
                     <Button>
                         <Link to="/decks">My Decks</Link>
                     </Button>
-                    <Button onClick={logout} colorScheme='grey'>Logout</Button>
+                    <Button onClick={logout}>Logout</Button>
                 </ButtonGroup>
                 {/* <button onClick={logout}>Logout</button> */}
                 </>
             ) : (
                 <>
-                <ButtonGroup variant='outline' colorScheme='blue'>
+                <ButtonGroup>
                     <Button><Link to="/">Home</Link></Button>
-                    <Button colorScheme='grey'><Link to="/login">Sign in</Link></Button>
+                    <Button><Link to="/login">Sign in</Link></Button>
                 </ButtonGroup>
                 </>
             )}
