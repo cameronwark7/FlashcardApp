@@ -88,7 +88,7 @@ const StudyDeck = () => {
         <div>
             { selectedDeckRandom && (
                 <>
-                <div>{JSON.stringify(selectedDeckRandom)}</div>
+                {/* <div>{JSON.stringify(selectedDeckRandom)}</div> */}
 
                 {selectedDeckRandom.length > 0 ? (
                 <>
