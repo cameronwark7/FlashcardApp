@@ -51,6 +51,9 @@ const StudyDeck = () => {
         let randomIndex = null;
         do {
             randomIndex = Math.floor(Math.random() * selectedDeckRandom.length);
+            if (selectedDeckRandom.length == 1) {
+                break;
+            }
         } while (randomIndex == deckArrayIndex);
         setDeckArrayIndex(randomIndex);
     }
