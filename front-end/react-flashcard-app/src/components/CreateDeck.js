@@ -22,7 +22,8 @@ const CreateDeck = () => {
         };
 
         dispatch(createDeck(data)).then(() => {
-            window.location.reload();
+            // window.location.reload();
+            history.push('/decks');
         })
     }
 

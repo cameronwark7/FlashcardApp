@@ -5,21 +5,24 @@ import DeckListBox from './DeckListBox';
 import { Stack, HStack, VStack, StackDivider } from '@chakra-ui/react';
 import * as api from '../api/index';
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { getDecks } from '../actions/decks';
 
 const Decks = () => {
     // references /reducers/index.js
     const decks = useSelector((state) => state.decks);
-
-    // const [decks, setDecks] = useState(null);
-
-    // const set = () => {
-    //     const data = useSelector((state) => state.decks);
-
-    // }
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        
-    }, [])
+        const user = JSON.parse(localStorage.getItem('profile'));
+        if (user != null) {
+        const email = user.result.email;
+        const obj = {
+            email
+        }
+        dispatch(getDecks(obj));
+        }
+    }, [dispatch])
 
     // redirect to create deck component
     const history = useHistory();
