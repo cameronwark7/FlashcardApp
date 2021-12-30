@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { createDeck } from '../actions/decks';
 import * as api from '../api/index.js';
 import { Button } from '@chakra-ui/react';
-import { Input, Text } from '@chakra-ui/react'
+import { Input, Text } from '@chakra-ui/react';
 
 const CreateDeck = () => {
 

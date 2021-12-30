@@ -108,6 +108,21 @@ app.post('/api/v1/update-deck', async (req, res) => {
     })
 });
 
+app.post('/api/v1/update-deck-name', async (req, res) => {
+    console.log(req.body);
+
+    await Deck.findOneAndUpdate({
+        email: req.body.email,
+        "decks.name": req.body.deckName
+    }, {
+        "decks.$.name": req.body.newDeckName
+    }).then((data) => {
+        res.send(data);
+    }).catch((err) => {
+        console.log(err);
+    });
+});
+
 app.delete('/api/v1/delete-deck', async (req, res) => {
     console.log(req.body);
 

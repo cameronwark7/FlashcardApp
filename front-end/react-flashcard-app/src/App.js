@@ -13,6 +13,7 @@ import DeckView from './components/DeckView';
 import { getDecks } from './actions/decks';
 import { useDispatch } from 'react-redux';
 import React, { useEffect } from 'react';
+import RenameDeck from './components/RenameDeck';
 
 function App() {
   const dispatch = useDispatch();
@@ -50,6 +51,9 @@ function App() {
           </Route>
           <Route exact path="/decks/:deckName">
             <DeckView />
+          </Route>
+          <Route exact path="/decks/rename/:deckName">
+            <RenameDeck />
           </Route>
           <Route exact path="/create-deck">
             <CreateDeck />

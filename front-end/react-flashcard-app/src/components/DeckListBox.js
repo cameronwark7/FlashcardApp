@@ -25,7 +25,7 @@ const DeckListBox = (props) => {
     }
 
     const renameDeck = (deck) => {
-        console.log(deck);
+        history.push(`/decks/rename/${deck}`);
     }
 
     return(
