@@ -14,11 +14,6 @@ const DeckListBox = (props) => {
         history.push(`/decks/${deck}`)
     }
 
-    // const [test, setTest] = useState({});
-    // useEffect(() => {
-    //     console.log('ran');
-    // }, [test]);
-
     const deleteDeck = async (deckName) => {
         const profile = localStorage.getItem('profile');
         const obj = {
@@ -27,8 +22,6 @@ const DeckListBox = (props) => {
         }
         const res = await api.deleteDeck(obj);
         window.location.reload();
-        // console.log(res);
-        // setTest(res);
     }
 
     const renameDeck = (deck) => {
