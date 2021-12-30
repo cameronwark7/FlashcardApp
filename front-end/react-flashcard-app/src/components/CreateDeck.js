@@ -22,7 +22,7 @@ const CreateDeck = () => {
         };
 
         dispatch(createDeck(data)).then(() => {
-            history.push('/decks');
+            window.location.reload();
         })
     }
 
@@ -41,8 +41,8 @@ const CreateDeck = () => {
                 ></Input>
                 <br/>
 
+                <Button onClick={cancel}>Back</Button>
                 <Button type='submit'>Create</Button>
-                <Button onClick={cancel}>Cancel</Button>
             </form>
         </div>
     )

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { GoogleLogin } from 'react-google-login';
 import { useHistory } from 'react-router';
 import { signin, signup } from '../actions/auth.js';
-import { Button } from '@chakra-ui/react';
+import { Button, Input, Heading } from '@chakra-ui/react';
 
 const Login = () => {
 
@@ -60,51 +60,51 @@ const Login = () => {
 
     return(
         <div>
-            { isSignup ? <h2>Sign up</h2> : <h2>Sign in</h2> }
+            { isSignup ? <Heading size='md'>Sign up</Heading> : <Heading size='md'>Sign in</Heading> }
             <form onSubmit={handleSubmit}>
                 { isSignup && (
                     <>
                     <label>First name</label>
-                    <input
+                    <Input
                         value={firstName}
                         onChange={(e) => setFirstName(e.target.value)}
                         required
-                    ></input>
+                    ></Input>
                     <br/>
 
                     <label>Last name</label>
-                    <input
+                    <Input
                         value={lastName}
                         onChange={(e) => setLastName(e.target.value)}
                         required
-                    ></input>
+                    ></Input>
                     <br/>
                     </>
                 )}
                 <label>Email</label>
-                <input
+                <Input
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                ></input>
+                ></Input>
                 <br/>
 
                 <label>Password</label>
-                <input
+                <Input
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
-                ></input>
+                ></Input>
                 <br/>
 
                 { isSignup && (
                     <>
                     <label>Repeat password</label>
-                    <input
+                    <Input
                         value={repeatPassword}
                         onChange={(e) => setRepeatPassword(e.target.value)}
                         required
-                    ></input>
+                    ></Input>
                     <br/>
                     </>
                 )}
