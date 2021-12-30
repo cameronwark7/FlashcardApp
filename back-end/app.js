@@ -42,6 +42,10 @@ app.post('/api/v1/add-card', async (req, res) => {
     await Deck.updateOne( {email: req.body.email, "decks.name": req.body.deckName}, {$push: {'decks.$.cards': card}} )
 });
 
+app.delete('/api/v1/delete-card', async (req, res) => {
+    console.log(req.body);
+});
+
 // add deck if name is unique
 app.post('/api/v1/create-deck', async (req, res) => {
     console.log(req.body);

@@ -31,7 +31,17 @@ const DeckView = () => {
     }
 
     const deleteCard = () => {
+        // get the selected card using the currently selected index and send to backend.
+        const card = selectedDeck[selectedIndex];
         
+        const profile = localStorage.getItem('profile');
+        const obj = {
+            card,
+            deckName,
+            email: JSON.parse(profile).result.email,
+        }
+
+        api.deleteCard(obj);
     }
 
     const saveCard = () => {
@@ -85,7 +95,8 @@ const DeckView = () => {
                     placeholder='Back'
                     onChange={(e) => setBack(e.target.value)}
                     ></Textarea>
-                    {selectedIndex != null ? <Button onClick={saveCard}>Save</Button> : <Button isDisabled>Save</Button>}
+                    {selectedIndex != null ? <Button onClick={saveCard}>Save Changes</Button> : <Button isDisabled>Save Changes</Button>}
+                    {selectedIndex != null ? <Button onClick={deleteCard}>Delete Card</Button> : <Button isDisabled>Delete Card</Button>}
                 </Box>
             </HStack>
         </div>
