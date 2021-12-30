@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import * as api from '../api';
-import { Button } from '@chakra-ui/react';
 import {
     FormControl,
     FormLabel,
@@ -10,6 +9,7 @@ import {
     FormHelperText,
     Select
   } from '@chakra-ui/react';
+import { Center, Stack, HStack, VStack, StackDivider, Box, Button, Textarea, Text } from '@chakra-ui/react';
 
 const AddCard = () => {
 
@@ -24,7 +24,7 @@ const AddCard = () => {
         setDeckName(decks[0]?.name);
     }, [decks]);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const obj = { 
             deckName, 
@@ -33,7 +33,8 @@ const AddCard = () => {
             email: JSON.parse(profile).result.email
         };
 
-        api.addCard(obj);
+        await api.addCard(obj);
+        window.location.reload();
     }
 
     return(
@@ -54,22 +55,22 @@ const AddCard = () => {
                 }
                 <br/>
 
-                <label>Front: </label>
-                <br/>
-                <textarea
-                    required
-                    value={front}
-                    onChange={(e) => setFront(e.target.value)}
-                ></textarea>
+                <Text>Front:</Text>
+                <Textarea
+                required
+                placeholder='Front'
+                value={front}
+                onChange={(e) => setFront(e.target.value)}
+                ></Textarea>
                 <br/>
 
-                <label>Back: </label>
-                <br/>
-                <textarea
-                    required
-                    value={back}
-                    onChange={(e) => setBack(e.target.value)}
-                ></textarea>
+                <Text>Back:</Text>
+                <Textarea
+                required
+                placeholder='Back'
+                value={back}
+                onChange={(e) => setBack(e.target.value)}
+                ></Textarea>
                 <br/>
 
                 <Button type='submit'>Add Card</Button>

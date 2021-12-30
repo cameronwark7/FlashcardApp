@@ -39,7 +39,17 @@ app.post('/api/v1/add-card', async (req, res) => {
         back: req.body.back
     }
 
-    await Deck.updateOne( {email: req.body.email, "decks.name": req.body.deckName}, {$push: {'decks.$.cards': card}} )
+    await Deck.updateOne({
+        email: req.body.email, "decks.name": req.body.deckName
+    }, {
+        $push: {
+            'decks.$.cards': card
+        }
+    }).then((data) => {
+        res.send(data);
+    }).catch((err) => {
+        console.log(err);
+    });
 });
 
 app.delete('/api/v1/delete-card', async (req, res) => {
