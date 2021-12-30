@@ -44,6 +44,15 @@ app.post('/api/v1/add-card', async (req, res) => {
 
 app.delete('/api/v1/delete-card', async (req, res) => {
     console.log(req.body);
+
+    await Deck.findOneAndUpdate({
+        email: req.body.email,
+        'decks.name': req.body.deckName
+    }, {
+        $pull: {
+            'decks.$.cards': { front: req.body.card.front }
+        }
+    })
 });
 
 // add deck if name is unique
