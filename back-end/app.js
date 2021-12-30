@@ -101,6 +101,10 @@ app.post('/api/v1/update-deck', async (req, res) => {
         'decks.name': req.body.deckName
     }, {
         'decks.$.cards': req.body.newCards
+    }).then((data) => {
+        res.send(data);
+    }).catch((err) => {
+        console.log(err);
     })
 });
 

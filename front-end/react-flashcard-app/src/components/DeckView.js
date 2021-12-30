@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { Center, Stack, HStack, VStack, StackDivider, Box, Button, Textarea, Text } from '@chakra-ui/react';
+import { Center, Stack, HStack, VStack, StackDivider, Box, Button, Textarea, Text, Heading } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import * as api from '../api/index';
@@ -30,7 +30,7 @@ const DeckView = () => {
         setBack(card.back);
     }
 
-    const deleteCard = () => {
+    const deleteCard = async () => {
         // get the selected card using the currently selected index and send to backend.
         const card = selectedDeck[selectedIndex];
         
@@ -41,10 +41,11 @@ const DeckView = () => {
             email: JSON.parse(profile).result.email,
         }
 
-        api.deleteCard(obj);
+        await api.deleteCard(obj);
+        window.location.reload();
     }
 
-    const saveCard = () => {
+    const saveCard = async () => {
         // copy the array without the reference
         let selectedDeckClone = [...selectedDeck];
 
@@ -61,12 +62,13 @@ const DeckView = () => {
         }
 
         // send updated deck to backend
-        api.updateDeck(obj);
+        await api.updateDeck(obj);
+        window.location.reload();
     }
 
     return(
         <div>
-            <p>{deckName}</p>
+            <Heading side='md'>{deckName}</Heading>
             <HStack>
                 <VStack
                 divider={<StackDivider borderColor='gray.200' />}

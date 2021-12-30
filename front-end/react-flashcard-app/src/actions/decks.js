@@ -19,10 +19,7 @@ export const createDeck = (obj) => async (dispatch) => {
     try
     {
         const { data } = await api.createDeck(obj);
-        // console.log(data.decks)
-
         dispatch({ type: 'CREATE_DECK', payload: JSON.stringify(data.decks) });
-        // dispatch({ type: 'CREATE_DECK', payload: {key: "value"} });
     }
     catch (error)
     {

@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { createDeck } from '../actions/decks';
 import * as api from '../api/index.js';
 import { Button } from '@chakra-ui/react';
+import { Input, Text } from '@chakra-ui/react'
 
 const CreateDeck = () => {
 
@@ -20,8 +21,9 @@ const CreateDeck = () => {
             email: JSON.parse(profile).result.email
         };
 
-        dispatch(createDeck(data));
-        history.push('/decks'); // change to only redirect on 200 status eventually
+        dispatch(createDeck(data)).then(() => {
+            history.push('/decks');
+        })
     }
 
     const cancel = () => {
@@ -31,12 +33,12 @@ const CreateDeck = () => {
     return(
         <div>
             <form onSubmit={handleSubmit}>
-                <label>Deck Name: </label>
-                <input
-                    value={deckName.name}
-                    onChange={(e) => setDeckName(e.target.value)}
-                    required
-                ></input>
+                <Text>Deck Name:</Text>
+                <Input
+                value={deckName.name}
+                onChange={(e) => setDeckName(e.target.value)}
+                required
+                ></Input>
                 <br/>
 
                 <Button type='submit'>Create</Button>
