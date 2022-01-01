@@ -51,12 +51,26 @@ const RenameDeck = () => {
 
     return(
         <>
-        <Input
-        defaultValue={deckName}
-        onChange={(e) => setNewDeckName(e.target.value)}
-        required
-        ></Input>
-        { deckNameError && <div>{deckNameError}</div>}
+        { deckNameError ? 
+        <>
+            <Input
+            defaultValue={deckName}
+            onChange={(e) => setNewDeckName(e.target.value)}
+            isInvalid
+            errorBorderColor='crimson'
+            required
+            ></Input>
+            <div>{deckNameError}</div>
+        </>
+        : 
+        <>
+            <Input
+            defaultValue={deckName}
+            onChange={(e) => setNewDeckName(e.target.value)}
+            required
+            ></Input>
+        </> 
+        }
         <Button onClick={cancel}>Cancel</Button>
         <Button onClick={save}>Save</Button>
         </>
