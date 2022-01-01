@@ -15,6 +15,7 @@ import {
 const Study = () => {
 
     const [deckName, setDeckName] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
     const decks = useSelector((state) => state.decks);
     const history = useHistory();
 
@@ -29,7 +30,8 @@ const Study = () => {
         if (x[0].cards.length > 0) {
             history.push(`/study/${deckName}`)
         } else {
-            alert(`There are no cards in deck ${deckName}`);
+            setErrorMessage(`There are no cards in ${deckName}`);
+            // alert(`There are no cards in deck ${deckName}`);
         }
     }
 
@@ -46,6 +48,7 @@ const Study = () => {
                             return <option value={val.name}>{val.name}</option>
                         })}
                     </Select>
+                    { errorMessage && <div>{errorMessage}</div>}
                 </FormControl>
             }
             <br/>
