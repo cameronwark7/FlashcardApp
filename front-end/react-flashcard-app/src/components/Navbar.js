@@ -28,27 +28,30 @@ const Navbar = () => {
             {user ? (
                 <>
                 <ButtonGroup>
-                    <Button>
-                        <Link to="/">Home</Link>
-                    </Button>
-                    <Button>
-                        <Link to="/add-card">Add Cards</Link>
-                    </Button>
-                    <Button>
-                        <Link to="/study">Study</Link>
-                    </Button>
-                    <Button>
-                        <Link to="/decks">My Decks</Link>
-                    </Button>
+                    <Link to="/">
+                        <Button>Home</Button>
+                    </Link>
+                    <Link to="/add-card">
+                        <Button>Add Cards</Button>
+                    </Link>
+                    <Link to="/study">
+                        <Button>Study</Button>
+                    </Link>
+                    <Link to="/decks">
+                        <Button>My Decks</Button>
+                    </Link>
                     <Button onClick={logout}>Logout</Button>
                 </ButtonGroup>
-                {/* <button onClick={logout}>Logout</button> */}
                 </>
             ) : (
                 <>
                 <ButtonGroup>
-                    <Button><Link to="/">Home</Link></Button>
-                    <Button><Link to="/login">Sign in</Link></Button>
+                    <Link to="/">
+                        <Button>Home</Button>
+                    </Link>
+                    <Link to="/login">
+                        <Button>Sign in</Button>
+                    </Link>
                 </ButtonGroup>
                 </>
             )}
