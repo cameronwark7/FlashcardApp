@@ -47,12 +47,16 @@ const RenameDeck = () => {
             }
         }
 
-        // check if new deck name is an empty string
+        // range validation
         if (newDeckName.length == 0) {
             setDeckNameError('*Required');
             return false;
         }
-        
+        if (newDeckName.length > 100) {
+            setDeckNameError('Deck name must be between 1 and 100 characters.');
+            return false;
+        }
+
         return true;
     }
 
