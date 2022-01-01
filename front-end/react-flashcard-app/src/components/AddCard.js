@@ -12,10 +12,11 @@ import {
 import { Center, Stack, HStack, VStack, StackDivider, Box, Button, Textarea, Text } from '@chakra-ui/react';
 
 const AddCard = () => {
-
     const [deckName, setDeckName] = useState('');
     const [front, setFront] = useState('');
     const [back, setBack] = useState('');
+    const [frontErrorMessage, setFrontErrorMessage] = useState('');
+    const [backErrorMessage, setBackErrorMessage] = useState('');
     const profile = localStorage.getItem('profile');
 
     const decks = useSelector((state) => state.decks);
@@ -26,15 +27,56 @@ const AddCard = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const obj = { 
-            deckName, 
-            front, 
-            back,
-            email: JSON.parse(profile).result.email
-        };
 
-        await api.addCard(obj);
-        window.location.reload();
+        const isValid = validate();
+        if (isValid) {
+            const obj = { 
+                deckName, 
+                front, 
+                back,
+                email: JSON.parse(profile).result.email
+            };
+    
+            await api.addCard(obj);
+            window.location.reload();
+        }
+    }
+
+    const validate = () => {
+        // reset error messages
+        setFrontErrorMessage('');
+        setBackErrorMessage('');
+
+        // get cards array of selected deck
+        const currentDeck = decks.filter(d => d.name == deckName);
+        const cards = currentDeck[0].cards;
+
+        let validationState = true;
+
+        // check if there are matching 'front' values in the cards array to what the user inputted
+        const duplicates = cards.filter(c => c.front == front);
+        if (duplicates.length > 0) {
+            setFrontErrorMessage('Duplicate card.');
+            validationState = false;
+        }
+        if (front.length == 0) {
+            setFrontErrorMessage('*Required');
+            validationState = false;
+        }
+        if (back.length == 0) {
+            setBackErrorMessage('*Required');
+            validationState = false;
+        }
+        if (front.length > 100) {
+            setFrontErrorMessage('Front must be between 1 and 100 characters.');
+            validationState = false;
+        }
+        if (back.length > 100) {
+            setBackErrorMessage('Back must be between 1 and 100 characters.');
+            validationState = false;
+        }
+        
+        return validationState;
     }
 
     return(
@@ -56,21 +98,47 @@ const AddCard = () => {
                 <br/>
 
                 <Text>Front:</Text>
-                <Textarea
-                required
-                placeholder='Front'
-                value={front}
-                onChange={(e) => setFront(e.target.value)}
-                ></Textarea>
+                {frontErrorMessage ? 
+                <>
+                    <Textarea
+                    isInvalid
+                    placeholder='Front'
+                    value={front}
+                    onChange={(e) => setFront(e.target.value)}
+                    ></Textarea>
+                    <div>{frontErrorMessage}</div>
+                </>
+                :
+                <>
+                    <Textarea
+                    placeholder='Front'
+                    value={front}
+                    onChange={(e) => setFront(e.target.value)}
+                    ></Textarea>
+                </>
+                }
                 <br/>
 
                 <Text>Back:</Text>
-                <Textarea
-                required
-                placeholder='Back'
-                value={back}
-                onChange={(e) => setBack(e.target.value)}
-                ></Textarea>
+                { backErrorMessage ?
+                <>
+                    <Textarea
+                    isInvalid
+                    placeholder='Back'
+                    value={back}
+                    onChange={(e) => setBack(e.target.value)}
+                    ></Textarea>
+                    <div>{backErrorMessage}</div>
+                </>
+                :
+                <>
+                    <Textarea
+                    placeholder='Back'
+                    value={back}
+                    onChange={(e) => setBack(e.target.value)}
+                    ></Textarea>
+                </>
+                }
                 <br/>
 
                 <Button type='submit'>Add Card</Button>
