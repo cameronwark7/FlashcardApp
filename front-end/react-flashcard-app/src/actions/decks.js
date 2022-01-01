@@ -1,6 +1,6 @@
 import * as api from '../api';
 
-// using thunk to handle asynchronous logic
+// gets list of unique decks and puts in redux store
 export const getDecks = (obj) => async (dispatch) => {
     try 
     {
