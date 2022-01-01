@@ -46,6 +46,13 @@ const RenameDeck = () => {
                 return false;
             }
         }
+
+        // check if new deck name is an empty string
+        if (newDeckName.length == 0) {
+            setDeckNameError('*Required');
+            return false;
+        }
+        
         return true;
     }
 
