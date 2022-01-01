@@ -69,7 +69,6 @@ const RenameDeck = () => {
             onChange={(e) => setNewDeckName(e.target.value)}
             isInvalid
             errorBorderColor='crimson'
-            required
             ></Input>
             <div>{deckNameError}</div>
         </>
@@ -78,7 +77,6 @@ const RenameDeck = () => {
             <Input
             defaultValue={deckName}
             onChange={(e) => setNewDeckName(e.target.value)}
-            required
             ></Input>
         </> 
         }
