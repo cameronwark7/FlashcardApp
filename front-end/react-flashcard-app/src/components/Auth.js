@@ -42,7 +42,19 @@ const Login = () => {
         }
     }
 
-    const googleSuccess = async (res) => {
+    const googleLoginSuccess = async (res) => {
+        const result = res?.profileObj;
+        const token = res?.tokenId;
+
+        try {
+            dispatch({ type: 'AUTH', data: { result, token } });
+            history.push('/');
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const googleSignupSuccess = async (res) => {
         const result = res?.profileObj;
         const token = res?.tokenId;
 
@@ -60,7 +72,7 @@ const Login = () => {
 
     return(
         <div>
-            { isSignup ? <Heading size='md'>Sign up</Heading> : <Heading size='md'>Sign in</Heading> }
+            { isSignup ? <Heading size='md'>Sign up</Heading> : <Heading size='md'>Log in</Heading> }
             <form onSubmit={handleSubmit}>
                 { isSignup && (
                     <>
@@ -110,16 +122,27 @@ const Login = () => {
                 )}
 
                 <Button type='submit'>
-                    { isSignup ? 'Sign up' : 'Sign in' }
+                    { isSignup ? 'Sign up' : 'Login' }
                 </Button>
                 <br/>
 
+                {/* { isSignup ? 
                 <GoogleLogin 
                     clientId="432327020955-4dch0afndf1oo9nljla6kdcbd46dijet.apps.googleusercontent.com"
-                    onSuccess={googleSuccess}
+                    buttonText='Sign up with Google'
+                    onSuccess={googleSignupSuccess}
+                    onFailure={googleFailure}
+                    cookiePolicy="single_host_origin"
+                    />
+                :
+                <GoogleLogin 
+                    clientId="432327020955-4dch0afndf1oo9nljla6kdcbd46dijet.apps.googleusercontent.com"
+                    buttonText='Log in with Google'
+                    onSuccess={googleLoginSuccess}
                     onFailure={googleFailure}
                     cookiePolicy="single_host_origin"
                 />
+                } */}
             </form>
             { isSignup? <><span>Already have an account? </span><a onClick={formSwitch}>Sign in</a></> 
                 : <><a>Forgot password?</a><span>Don't have an account? </span><a onClick={formSwitch}>Sign up</a></>}

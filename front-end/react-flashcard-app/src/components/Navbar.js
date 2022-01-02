@@ -50,7 +50,7 @@ const Navbar = () => {
                         <Button>Home</Button>
                     </Link>
                     <Link to="/login">
-                        <Button>Sign in</Button>
+                        <Button>Login</Button>
                     </Link>
                 </ButtonGroup>
                 </>
