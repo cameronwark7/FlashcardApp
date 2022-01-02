@@ -174,7 +174,7 @@ app.post('/api/v1/user/signin', async (req, res) => {
         const existingUser = await User.findOne({ email });
 
         // send 404 if user does not exist in the database. 
-        if(!existingUser) return res.status(404).json({ message: "User doesn't exist." });
+        if(!existingUser) return res.status(404).json({ message: "User does not exist." });
 
         // check if password sent is the same as when the user initially created the account.
         const isPasswordCorrect = await bcrypt.compare(password, existingUser.password);
@@ -202,7 +202,7 @@ app.post('/api/v1/user/signup', async (req, res) => {
         if(existingUser) return res.status(400).json({ message: "User already exists." });
 
         // check if both passwords sent from the front end match.
-        if(password !== repeatPassword) return res.status(400).json({ message: "Passwords don't match." });
+        if(password !== repeatPassword) return res.status(400).json({ message: "Passwords do not match." });
 
         // hashing the password so that it is not stored as plain text.
         const hashedPassword = await bcrypt.hash(password, 12);

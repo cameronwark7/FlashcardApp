@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { GoogleLogin } from 'react-google-login';
 import { useHistory } from 'react-router';
 import { signin, signup } from '../actions/auth.js';
-import { Button, Input, Heading } from '@chakra-ui/react';
+import { Button, Input, Heading, Text } from '@chakra-ui/react';
 
 const Login = () => {
 
@@ -16,29 +16,53 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [repeatPassword, setRepeatPassword] = useState('');
 
+    const [loginError, setLoginError] = useState('');
+    const [signupError, setSignupError] = useState('');
+    // const [firstNameError, setFirstNameError] = useState('');
+    // const [lastNameError, setLastNameError] = useState('');
+    // const [emailError, setEmailError] = useState('');
+    // const [passwordError, setPasswordError] = useState('');
+    // const [repeatPasswordError, setRepeatPasswordError] = useState('');
+
 
     const dispatch = useDispatch();
     const history = useHistory();
 
     const formSwitch = () => {
+        setLoginError('');
+        setSignupError('');
         setIsSignup(!isSignup);
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setLoginError('');
+        setSignupError('');
+
+        const lowercaseEmail = email.toLocaleLowerCase();
+        console.log(lowercaseEmail)
         const formData = {
             firstName,
             lastName,
-            email,
+            email: lowercaseEmail,
             password,
             repeatPassword
         }
         console.log(formData);
-        
         if (isSignup) {
-            dispatch(signup(formData, history));
+            dispatch(signup(formData, history)).then((res) => {
+                console.log(res);
+                if (res.status != 200) {
+                    setLoginError(res.data.message);
+                }
+            });
         } else {
-            dispatch(signin(formData, history));
+            dispatch(signin(formData, history)).then((res) => {
+                console.log(res);
+                if (res.status != 200) {
+                    setSignupError(res.data.message);
+                }
+            });
         }
     }
 
@@ -99,7 +123,8 @@ const Login = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     required
                 ></Input>
-                <br/>
+                {/* { emailError && <div>{emailError}</div>} */}
+                {/* <br/> */}
 
                 <label>Password</label>
                 <Input
@@ -121,6 +146,8 @@ const Login = () => {
                     </>
                 )}
 
+                {signupError && <Text color='red'>{signupError}</Text>}
+                {loginError && <Text color='red'>{loginError}</Text>}
                 <Button type='submit'>
                     { isSignup ? 'Sign up' : 'Login' }
                 </Button>
@@ -144,7 +171,7 @@ const Login = () => {
                 />
                 } */}
             </form>
-            { isSignup? <><span>Already have an account? </span><a onClick={formSwitch}>Sign in</a></> 
+            { isSignup? <><span>Already have an account? </span><a onClick={formSwitch}>Login</a></> 
                 : <><a>Forgot password?</a><span>Don't have an account? </span><a onClick={formSwitch}>Sign up</a></>}
         </div>
     )
