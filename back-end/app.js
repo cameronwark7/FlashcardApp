@@ -199,7 +199,7 @@ app.post('/api/v1/user/signup', async (req, res) => {
     try {
         // try to find if a user with the sent email already exists so that there are no issues with duplicate users.
         const existingUser = await User.findOne({ email });
-        if(existingUser) return res.status(400).json({ message: "User already exists." });
+        if(existingUser) return res.status(400).json({ message: "A user with that email already exists." });
 
         // check if both passwords sent from the front end match.
         if(password !== repeatPassword) return res.status(400).json({ message: "Passwords do not match." });

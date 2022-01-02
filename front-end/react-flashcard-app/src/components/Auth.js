@@ -52,14 +52,14 @@ const Login = () => {
         if (isSignup) {
             dispatch(signup(formData, history)).then((res) => {
                 console.log(res);
-                if (res.status != 200) {
+                if (res != undefined && res.status != 200) {
                     setLoginError(res.data.message);
                 }
             });
         } else {
             dispatch(signin(formData, history)).then((res) => {
                 console.log(res);
-                if (res.status != 200) {
+                if (res != undefined && res.status != 200) {
                     setSignupError(res.data.message);
                 }
             });
