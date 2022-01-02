@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Button, ButtonGroup } from '@chakra-ui/react';
+import { Button, ButtonGroup, Stack, VStack, Center, Text, Box } from '@chakra-ui/react';
 
 const StudyDeck = () => {
 
@@ -85,36 +85,24 @@ const StudyDeck = () => {
     }
 
     return(
-        <div>
-            { selectedDeckRandom && (
+        <VStack>
+            <Center h='150px'>
+                {selectedDeckRandom.length > 0 && <Text fontSize='2xl'>{selectedDeckRandom[deckArrayIndex]?.front}</Text>}
+            </Center>
+            <Center h='150px'>
+                {showCard && <Text fontSize='2xl'>{selectedDeckRandom[deckArrayIndex]?.back}</Text>}
+            </Center>
+            <Box>
+                {selectedDeckRandom.length > 0 ? 
                 <>
-                {/* <div>{JSON.stringify(selectedDeckRandom)}</div> */}
 
-                {selectedDeckRandom.length > 0 ? (
-                <>
-                
-                    <div>{selectedDeckRandom[deckArrayIndex]?.front}</div>
+                {showCard ? <ButtonGroup><Button onClick={againButtonClick}>Again</Button><Button onClick={goodButtonClick}>Good</Button></ButtonGroup>
+                    : <Button onClick={showButtonClick}>Show</Button> }
 
-                    { showCard ? 
-                    <>
-                        <div>{selectedDeckRandom[deckArrayIndex]?.back}</div>
-                        <ButtonGroup>
-                        <Button onClick={againButtonClick}>Again</Button>
-                        <Button onClick={goodButtonClick}>Good</Button>
-                        </ButtonGroup>
-                    </> 
-                    : 
-                    <Button onClick={showButtonClick}>Show</Button> }
-                    
-                </>) 
-                : 
-                <>
-                    <div>Deck complete!</div><Button onClick={rebuildDeck}>Rebuild Deck</Button>
-                </>}
-
-            </>
-             ) }
-        </div>
+                </>
+                : <><Center>Deck complete!</Center><Button onClick={rebuildDeck}>Rebuild Deck</Button></>}
+            </Box>
+        </VStack>
     )
 }
 
