@@ -18,11 +18,11 @@ const Login = () => {
 
     const [loginError, setLoginError] = useState('');
     const [signupError, setSignupError] = useState('');
-    // const [firstNameError, setFirstNameError] = useState('');
-    // const [lastNameError, setLastNameError] = useState('');
-    // const [emailError, setEmailError] = useState('');
-    // const [passwordError, setPasswordError] = useState('');
-    // const [repeatPasswordError, setRepeatPasswordError] = useState('');
+    const [firstNameError, setFirstNameError] = useState('');
+    const [lastNameError, setLastNameError] = useState('');
+    const [emailError, setEmailError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
+    const [repeatPasswordError, setRepeatPasswordError] = useState('');
 
 
     const dispatch = useDispatch();
@@ -31,6 +31,16 @@ const Login = () => {
     const formSwitch = () => {
         setLoginError('');
         setSignupError('');
+        setFirstNameError('');
+        setLastNameError('');
+        setEmailError('');
+        setPasswordError('');
+        setRepeatPasswordError('');
+        setFirstName('');
+        setLastName('');
+        setEmail('');
+        setPassword('');
+        setRepeatPasswordError('');
         setIsSignup(!isSignup);
     }
 
@@ -39,31 +49,68 @@ const Login = () => {
         setLoginError('');
         setSignupError('');
 
-        const lowercaseEmail = email.toLocaleLowerCase();
-        console.log(lowercaseEmail)
-        const formData = {
-            firstName,
-            lastName,
-            email: lowercaseEmail,
-            password,
-            repeatPassword
+        const isValid = validate();
+        if (isValid) {
+            const lowercaseEmail = email.toLocaleLowerCase();
+            console.log(lowercaseEmail)
+            const formData = {
+                firstName,
+                lastName,
+                email: lowercaseEmail,
+                password,
+                repeatPassword
+            }
+            console.log(formData);
+            if (isSignup) {
+                dispatch(signup(formData, history)).then((res) => {
+                    console.log(res);
+                    if (res != undefined && res.status != 200) {
+                        setLoginError(res.data.message);
+                    }
+                });
+            } else {
+                dispatch(signin(formData, history)).then((res) => {
+                    console.log(res);
+                    if (res != undefined && res.status != 200) {
+                        setSignupError(res.data.message);
+                    }
+                });
+            }
         }
-        console.log(formData);
+    }
+
+    const validate = () => {
+        let validationState = true;
+        
+        if (!email.includes('@')) {
+            setEmailError('Invalid email address.');
+            validationState = false;
+        }
+        if (password.length > 30 || password.length < 5) {
+            setPasswordError('Password must be between 5 and 30 characters.');
+            validationState = false;
+        }
+
         if (isSignup) {
-            dispatch(signup(formData, history)).then((res) => {
-                console.log(res);
-                if (res != undefined && res.status != 200) {
-                    setLoginError(res.data.message);
-                }
-            });
-        } else {
-            dispatch(signin(formData, history)).then((res) => {
-                console.log(res);
-                if (res != undefined && res.status != 200) {
-                    setSignupError(res.data.message);
-                }
-            });
+            if (firstName.length > 20 || firstName.length == 0) {
+                setFirstNameError('First name must be between 1 and 20 characters.');
+                validationState = false;
+            }
+            if (lastName.length > 20 || lastName.length == 0) {
+                setLastNameError('Last name must be between 1 and 20 characters.');
+                validationState = false;
+            }
+            if (repeatPassword.length > 30 || repeatPassword.length < 5) {
+                setRepeatPasswordError('Password must be between 5 and 30 characters');
+                validationState = false;
+            }
+            if (repeatPassword != password) {
+                setRepeatPasswordError('Passwords do not match');
+                validationState = false;
+            }
         }
+
+        return validationState;
     }
 
     const googleLoginSuccess = async (res) => {
@@ -104,16 +151,16 @@ const Login = () => {
                     <Input
                         value={firstName}
                         onChange={(e) => setFirstName(e.target.value)}
-                        required
                     ></Input>
+                    {firstNameError && <Text color='red'>{firstNameError}</Text>}
                     <br/>
 
                     <label>Last name</label>
                     <Input
                         value={lastName}
                         onChange={(e) => setLastName(e.target.value)}
-                        required
                     ></Input>
+                    {lastNameError && <Text color='red'>{lastNameError}</Text>}
                     <br/>
                     </>
                 )}
@@ -121,17 +168,16 @@ const Login = () => {
                 <Input
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    required
                 ></Input>
-                {/* { emailError && <div>{emailError}</div>} */}
-                {/* <br/> */}
+                {emailError && <Text color='red'>{emailError}</Text>}
+                <br/>
 
                 <label>Password</label>
                 <Input
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    required
                 ></Input>
+                {passwordError && <Text color='red'>{passwordError}</Text>}
                 <br/>
 
                 { isSignup && (
@@ -140,8 +186,8 @@ const Login = () => {
                     <Input
                         value={repeatPassword}
                         onChange={(e) => setRepeatPassword(e.target.value)}
-                        required
                     ></Input>
+                    {repeatPasswordError && <Text color='red'>{repeatPasswordError}</Text>}
                     <br/>
                     </>
                 )}
