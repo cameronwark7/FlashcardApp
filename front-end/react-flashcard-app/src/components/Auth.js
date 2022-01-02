@@ -40,7 +40,6 @@ const Login = () => {
         setLastName('');
         setEmail('');
         setPassword('');
-        setRepeatPasswordError('');
         setIsSignup(!isSignup);
     }
 
@@ -80,6 +79,14 @@ const Login = () => {
     }
 
     const validate = () => {
+        setLoginError('');
+        setSignupError('');
+        setFirstNameError('');
+        setLastNameError('');
+        setEmailError('');
+        setPasswordError('');
+        setRepeatPasswordError('');
+
         let validationState = true;
         
         if (!email.includes('@')) {
