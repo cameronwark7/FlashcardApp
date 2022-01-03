@@ -4,8 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { createDeck } from '../actions/decks';
 import * as api from '../api/index.js';
-import { Button } from '@chakra-ui/react';
-import { Input, Text } from '@chakra-ui/react';
+import { Text, Button, ButtonGroup, Input, Center, VStack } from '@chakra-ui/react';
 
 const CreateDeck = () => {
 
@@ -60,32 +59,33 @@ const CreateDeck = () => {
     }
 
     return(
-        <div>
-            <form onSubmit={handleSubmit}>
-                <Text>Deck Name:</Text>
-                { deckNameError ? 
-                <>
-                    <Input
-                    value={deckName.name}
-                    onChange={(e) => setDeckName(e.target.value)}
-                    isInvalid
-                    errorBorderColor='crimson'
-                    ></Input>
-                    <div>{deckNameError}</div>
-                </> 
-                : 
-                <>
-                    <Input
-                    value={deckName.name}
-                    onChange={(e) => setDeckName(e.target.value)}
-                    ></Input>
-                </>
-                }
-
+        <>
+        <Text marginX='10px'>Deck Name:</Text>
+        <Center marginX='10px' width='40%'  marginY='10px'>
+            { deckNameError ? (
+            <>
+                <Input
+                value={deckName.name}
+                onChange={(e) => setDeckName(e.target.value)}
+                isInvalid
+                errorBorderColor='crimson'
+                ></Input>
+                <div>{deckNameError}</div>
+            </> 
+            ) : (
+            <>
+                <Input
+                value={deckName.name}
+                onChange={(e) => setDeckName(e.target.value)}
+                ></Input>
+            </> )
+            }
+            <ButtonGroup marginX='10px'>
+                <Button onClick={handleSubmit} type='submit'>Create</Button>
                 <Button onClick={cancel}>Back</Button>
-                <Button type='submit'>Create</Button>
-            </form>
-        </div>
+            </ButtonGroup>
+        </Center>
+        </>
     )
 }
 
