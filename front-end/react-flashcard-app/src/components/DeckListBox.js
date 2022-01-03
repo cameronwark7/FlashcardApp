@@ -29,11 +29,12 @@ const DeckListBox = (props) => {
     }
 
     return(
-        <Flex className='deckListBox'>
-            <Center
-            onClick={() => redirect(props.deck.name)}
-            >{props.deck.name}</Center>
-            <Spacer />
+        <Flex 
+        
+        className='deckListBox'
+        >
+            <Center onClick={() => redirect(props.deck.name)}>{props.deck.name}</Center>
+            <Spacer onClick={() => redirect(props.deck.name)}/>
             <ButtonGroup size='sm'>
                 <Button
                 onClick={() => renameDeck(props.deck.name)}
