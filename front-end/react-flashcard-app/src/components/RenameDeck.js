@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Input } from '@chakra-ui/react';
+import { Button, ButtonGroup, Input, Center, VStack } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import * as api from '../api/index';
@@ -61,28 +61,30 @@ const RenameDeck = () => {
     }
 
     return(
-        <>
-        { deckNameError ? 
-        <>
-            <Input
-            defaultValue={deckName}
-            onChange={(e) => setNewDeckName(e.target.value)}
-            isInvalid
-            errorBorderColor='crimson'
-            ></Input>
-            <div>{deckNameError}</div>
-        </>
-        : 
-        <>
-            <Input
-            defaultValue={deckName}
-            onChange={(e) => setNewDeckName(e.target.value)}
-            ></Input>
-        </> 
-        }
-        <Button onClick={cancel}>Cancel</Button>
-        <Button onClick={save}>Save</Button>
-        </>
+        <Center marginX='10px' width='40%'  marginY='10px'>
+            { deckNameError ? 
+            <>
+                <Input
+                defaultValue={deckName}
+                onChange={(e) => setNewDeckName(e.target.value)}
+                isInvalid
+                errorBorderColor='crimson'
+                ></Input>
+                <div>{deckNameError}</div>
+            </>
+            : 
+            <>
+                <Input
+                defaultValue={deckName}
+                onChange={(e) => setNewDeckName(e.target.value)}
+                ></Input>
+            </> 
+            }
+            <ButtonGroup marginX='10px'>
+                <Button onClick={save}>Save</Button>
+                <Button onClick={cancel}>Cancel</Button>
+            </ButtonGroup>
+        </Center>
     )
 }
 
