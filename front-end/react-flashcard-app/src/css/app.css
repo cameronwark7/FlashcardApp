@@ -17,3 +17,10 @@
     /* text-decoration: underline; */
     font-weight: bold;
 }
+
+.headerTitle {
+    font-weight: bold;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: larger;
+}

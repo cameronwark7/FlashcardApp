@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router';
-import { Button, ButtonGroup } from '@chakra-ui/react';
+import { Button, Text, ButtonGroup, Spacer, Flex, Center } from '@chakra-ui/react';
 
 const Navbar = () => {
 
@@ -11,6 +11,7 @@ const Navbar = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const location = useLocation();
+    const title = 'Flashcard App';
 
     useEffect(() => {
         const token = user?.token;
@@ -26,11 +27,13 @@ const Navbar = () => {
     return(
         <div>
             {user ? (
-                <>
-                <ButtonGroup>
+                <Flex borderBottom='1px' borderColor='gray.200' padding={'4px'}>
+                <Center>
                     <Link to="/">
-                        <Button>Home</Button>
+                        <span className='headerTitle'>{title}</span>
                     </Link>
+                </Center>
+                <ButtonGroup>
                     <Link to="/add-card">
                         <Button>Add Cards</Button>
                     </Link>
@@ -40,20 +43,23 @@ const Navbar = () => {
                     <Link to="/decks">
                         <Button>My Decks</Button>
                     </Link>
-                    <Button onClick={logout}>Logout</Button>
                 </ButtonGroup>
-                </>
+                <Spacer />
+                <Button onClick={logout} marginX={'7px'}>Logout</Button>
+                </Flex>
             ) : (
-                <>
-                <ButtonGroup>
-                    <Link to="/">
-                        <Button>Home</Button>
-                    </Link>
-                    <Link to="/login">
-                        <Button>Login</Button>
-                    </Link>
-                </ButtonGroup>
-                </>
+                <Flex borderBottom='1px' borderColor='gray.200' padding={'4px'}>
+                    <ButtonGroup size='sm'>
+                        <Center>
+                            <Link to="/">
+                                {/* <Text size='xl'>App Name</Text> */}
+                                <span className='headerTitle'>{title}</span>
+                            </Link>
+                        </Center>
+                    </ButtonGroup>
+                    <Spacer />
+                    <Link to="/login"><Button marginX={'7px'}>Login</Button></Link>
+                </Flex>
             )}
         </div>
     )

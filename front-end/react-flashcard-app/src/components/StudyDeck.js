@@ -80,7 +80,7 @@ const StudyDeck = () => {
     }
 
     return(
-        <VStack>
+        <VStack marginY={'10px'}>
             <Center h='150px'>
                 {selectedDeckRandom.length > 0 && <Text fontSize='2xl'>{selectedDeckRandom[deckArrayIndex]?.front}</Text>}
             </Center>
