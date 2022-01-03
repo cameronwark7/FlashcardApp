@@ -30,7 +30,6 @@ const DeckListBox = (props) => {
 
     return(
         <Flex 
-        
         className='deckListBox'
         >
             <Center onClick={() => redirect(props.deck.name)}>{props.deck.name}</Center>

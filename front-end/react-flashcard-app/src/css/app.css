@@ -4,5 +4,16 @@
 
 .deckListBox:hover {
     font-weight: bold;
+    /* text-decoration: underline; */
     /* background-color: rgb(241, 241, 241); */
+}
+
+.card {
+    cursor: pointer;
+    padding: 10px;
+}
+
+.card:hover {
+    /* text-decoration: underline; */
+    font-weight: bold;
 }

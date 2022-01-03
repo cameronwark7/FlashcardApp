@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { Center, Stack, HStack, VStack, StackDivider, Box, Button, Textarea, Text, Heading } from '@chakra-ui/react';
+import { Center, Stack, HStack, VStack, StackDivider, Box, Button, ButtonGroup, Textarea, Text, Heading } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import * as api from '../api/index';
@@ -110,12 +110,12 @@ const DeckView = () => {
             <HStack>
                 <VStack
                 divider={<StackDivider borderColor='gray.200' />}
-                spacing={3}
+                spacing={0}
                 w={'60%'}
                 align='stretch'
                 >
                     { selectedDeck && selectedDeck.map((card, index) => {
-                            return <div onClick={() => setForm(card, index)}>{card.front}</div>
+                            return <div onClick={() => setForm(card, index)} class='card'>{card.front}</div>
                     }) }
                     { selectedDeck.length == 0 && <Center>No cards in deck</Center> }
                 </VStack>
@@ -162,8 +162,10 @@ const DeckView = () => {
                     ></Textarea>
                     </>}
                     {frontErrorMessage ? <></> : <></>}
-                    {selectedIndex != null ? <Button onClick={saveCard}>Save Changes</Button> : <Button isDisabled>Save Changes</Button>}
-                    {selectedIndex != null ? <Button onClick={deleteCard}>Delete Card</Button> : <Button isDisabled>Delete Card</Button>}
+                    <ButtonGroup marginY={'8px'}>
+                        {selectedIndex != null ? <Button onClick={saveCard}>Save Changes</Button> : <Button isDisabled>Save Changes</Button>}
+                        {selectedIndex != null ? <Button onClick={deleteCard}>Delete Card</Button> : <Button isDisabled>Delete Card</Button>}
+                    </ButtonGroup>
                 </Box>
             </HStack>
         </div>
