@@ -3,13 +3,7 @@ import { Button } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import CreateDeck from './CreateDeck';
-import {
-    FormControl,
-    FormLabel,
-    FormErrorMessage,
-    FormHelperText,
-    Select
-  } from '@chakra-ui/react';
+import {FormControl, FormLabel, FormErrorMessage, FormHelperText, Select, Center, Box} from '@chakra-ui/react';
 
 
 const Study = () => {
@@ -31,15 +25,15 @@ const Study = () => {
             history.push(`/study/${deckName}`)
         } else {
             setErrorMessage(`There are no cards in ${deckName}`);
-            // alert(`There are no cards in deck ${deckName}`);
         }
     }
 
     return(
-        <div>
+        <Center marginTop='10px'>
+            <Box width='40%'>
             {decks &&  
                 <FormControl>
-                    <FormLabel htmlFor='deck'>Deck</FormLabel>
+                    <FormLabel htmlFor='deck'>Choose Deck</FormLabel>
                     <Select 
                     id='deck'
                     onChange={(e) => setDeckName(e.target.value)}
@@ -51,9 +45,9 @@ const Study = () => {
                     { errorMessage && <div>{errorMessage}</div>}
                 </FormControl>
             }
-            <br/>
-            <Button onClick={study}>Study</Button>
-        </div>
+            <Button onClick={study} marginTop='10px'>Study</Button>
+            </Box>
+        </Center>
     )
 }
 
