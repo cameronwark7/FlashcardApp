@@ -70,11 +70,6 @@ const StudyDeck = () => {
         setDeckArrayIndex(randomIndex);
 
         setSelectedDeckRandom(arr);
-
-        // if (index > -1) {
-        //     array.splice(index, 1);
-        // }
-
     }
 
     const rebuildDeck = () => {

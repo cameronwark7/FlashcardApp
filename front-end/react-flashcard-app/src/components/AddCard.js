@@ -80,7 +80,8 @@ const AddCard = () => {
     }
 
     return(
-        <div>
+        <Center marginTop='10px'>
+            <Box width={'40%'}>
             <form onSubmit={handleSubmit}>
                 {decks &&  
                     <FormControl>
@@ -141,9 +142,10 @@ const AddCard = () => {
                 }
                 <br/>
 
-                <Button type='submit'>Add Card</Button>
+                <Button type='submit' marginTop='10px'>Add Card</Button>
             </form>
-        </div>
+            </Box>
+        </Center>
     )
 }
 
