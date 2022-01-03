@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Flex, Spacer } from '@chakra-ui/react';
-import { Center, Square, Circle, Button } from '@chakra-ui/react';
+import { Center, Square, Circle, Button, ButtonGroup } from '@chakra-ui/react';
 import { useHistory } from 'react-router-dom';
 import { IconButton } from '@chakra-ui/react'
 import * as api from '../api/index';
@@ -29,16 +29,19 @@ const DeckListBox = (props) => {
     }
 
     return(
-        <Flex>
+        <Flex className='deckListBox'>
             <Center
             onClick={() => redirect(props.deck.name)}
             >{props.deck.name}</Center>
-            <Button
-            onClick={() => renameDeck(props.deck.name)}
-            >Rename</Button>
-            <Button
-            onClick={() => deleteDeck(props.deck.name)}
-            >Delete</Button>
+            <Spacer />
+            <ButtonGroup size='sm'>
+                <Button
+                onClick={() => renameDeck(props.deck.name)}
+                >Rename</Button>
+                <Button
+                onClick={() => deleteDeck(props.deck.name)}
+                >Delete</Button>
+            </ButtonGroup>
         </Flex>
     )
 }
