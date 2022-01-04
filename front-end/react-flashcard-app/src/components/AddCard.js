@@ -48,24 +48,8 @@ const AddCard = () => {
         setFrontErrorMessage('');
         setBackErrorMessage('');
         setDeckNameError('');
-
-        if (!deckName) {
-            setDeckNameError('*Required');
-            return false;
-        }
-
-        // get cards array of selected deck
-        const currentDeck = decks.filter(d => d.name == deckName);
-        const cards = currentDeck[0].cards;
-
         let validationState = true;
 
-        // check if there are matching 'front' values in the cards array to what the user inputted
-        const duplicates = cards.filter(c => c.front == front);
-        if (duplicates.length > 0) {
-            setFrontErrorMessage('Duplicate card.');
-            validationState = false;
-        }
         if (front.length == 0) {
             setFrontErrorMessage('*Required');
             validationState = false;
@@ -80,6 +64,21 @@ const AddCard = () => {
         }
         if (back.length > 100) {
             setBackErrorMessage('Back must be between 1 and 100 characters.');
+            validationState = false;
+        }
+        if (!deckName) {
+            setDeckNameError('*Required');
+            return false;
+        }
+
+        // get cards array of selected deck
+        const currentDeck = decks.filter(d => d.name == deckName);
+        const cards = currentDeck[0].cards;
+
+        // check if there are matching 'front' values in the cards array to what the user inputted
+        const duplicates = cards.filter(c => c.front == front);
+        if (duplicates.length > 0) {
+            setFrontErrorMessage('Duplicate card.');
             validationState = false;
         }
         
@@ -105,6 +104,7 @@ const AddCard = () => {
                                 })}
                             </Select>
                             <div>{deckNameError}</div>
+                            <br/>
                         </>
                         ) : (
                             <Select
