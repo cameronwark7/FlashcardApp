@@ -29,6 +29,7 @@ const Login = (props) => {
 
     useEffect(() => {
         resetFields();
+        resetErrors();
         console.log(state)
         if (state == 'login') {
             setFormState('login');
@@ -39,15 +40,24 @@ const Login = (props) => {
 
     const loginFormSwitch = () => {
         resetFields();
+        resetErrors();
         history.push('/auth/login')
     }
 
     const signupFormSwitch = () => {
         resetFields();
+        resetErrors();
         history.push('/auth/signup')
     }
 
     const resetFields = () => {
+        setFirstName('');
+        setLastName('');
+        setEmail('');
+        setPassword('');
+    }
+
+    const resetErrors = () => {
         setLoginError('');
         setSignupError('');
         setFirstNameError('');
@@ -55,15 +65,11 @@ const Login = (props) => {
         setEmailError('');
         setPasswordError('');
         setRepeatPasswordError('');
-        setFirstName('');
-        setLastName('');
-        setEmail('');
-        setPassword('');
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        resetFields();
+        resetErrors();
 
         const isValid = validate();
         if (isValid) {
@@ -96,7 +102,7 @@ const Login = (props) => {
     }
 
     const validate = () => {
-        resetFields();
+        // resetErrors();
 
         let validationState = true;
         
