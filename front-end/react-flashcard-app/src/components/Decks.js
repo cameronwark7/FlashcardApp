@@ -43,7 +43,7 @@ const Decks = () => {
                     { decks && decks.map((deck) => {
                         return <DeckListBox deck={deck} />
                     }) }
-                    { decks.length == 0 && <p>No decks</p>}
+                    { decks.length == 0 && <Center><p>No decks created</p></Center>}
                 </VStack>
                 <Button onClick={createDeck}>Create Deck</Button>
             </VStack>

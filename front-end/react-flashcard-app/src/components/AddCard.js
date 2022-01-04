@@ -15,6 +15,7 @@ const AddCard = () => {
     const [deckName, setDeckName] = useState('');
     const [front, setFront] = useState('');
     const [back, setBack] = useState('');
+    const [deckNameError, setDeckNameError] = useState('');
     const [frontErrorMessage, setFrontErrorMessage] = useState('');
     const [backErrorMessage, setBackErrorMessage] = useState('');
     const profile = localStorage.getItem('profile');
@@ -46,6 +47,12 @@ const AddCard = () => {
         // reset error messages
         setFrontErrorMessage('');
         setBackErrorMessage('');
+        setDeckNameError('');
+
+        if (!deckName) {
+            setDeckNameError('*Required');
+            return false;
+        }
 
         // get cards array of selected deck
         const currentDeck = decks.filter(d => d.name == deckName);
@@ -86,14 +93,29 @@ const AddCard = () => {
                 {decks &&  
                     <FormControl>
                         <FormLabel htmlFor='deck'>Deck</FormLabel>
-                        <Select
-                        id='deck'
-                        onChange={(e) => setDeckName(e.target.value)}
-                        >
-                            {decks.map((val) => {
-                                return <option value={val.name}>{val.name}</option>
-                            })}
-                        </Select>
+                        { deckNameError ? (
+                        <>
+                            <Select
+                            id='deck'
+                            isInvalid
+                            onChange={(e) => setDeckName(e.target.value)}
+                            >
+                                {decks.map((val) => {
+                                    return <option value={val.name}>{val.name}</option>
+                                })}
+                            </Select>
+                            <div>{deckNameError}</div>
+                        </>
+                        ) : (
+                            <Select
+                            id='deck'
+                            onChange={(e) => setDeckName(e.target.value)}
+                            >
+                                {decks.map((val) => {
+                                    return <option value={val.name}>{val.name}</option>
+                                })}
+                            </Select>
+                        )}
                     </FormControl>
                 }
                 <br/>
