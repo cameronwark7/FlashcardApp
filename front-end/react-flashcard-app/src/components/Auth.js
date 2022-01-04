@@ -88,7 +88,7 @@ const Login = () => {
 
         let validationState = true;
         
-        if (!email.includes('@')) {
+        if (!validateEmail(email)) {
             setEmailError('Invalid email address.');
             validationState = false;
         }
@@ -117,6 +117,12 @@ const Login = () => {
         }
 
         return validationState;
+    }
+
+    function validateEmail(email) 
+    {
+        var re = /\S+@\S+\.\S+/;
+        return re.test(email);
     }
 
     const googleLoginSuccess = async (res) => {
