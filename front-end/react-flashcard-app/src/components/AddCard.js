@@ -118,7 +118,6 @@ const AddCard = () => {
                         )}
                     </FormControl>
                 }
-                <br/>
 
                 <Text>Front:</Text>
                 {frontErrorMessage ? 

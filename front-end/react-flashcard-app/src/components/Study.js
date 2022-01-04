@@ -18,9 +18,17 @@ const Study = () => {
     }, [decks]);
 
     const study = () => {
+        setErrorMessage('');
+
         const x = decks.filter(obj => {
             return obj.name == deckName;
         });
+
+        if (x.length == 0) {
+            setErrorMessage('*Required');
+            return null;
+        }
+
         if (x[0].cards.length > 0) {
             history.push(`/study/${deckName}`)
         } else {
