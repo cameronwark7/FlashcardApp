@@ -181,6 +181,7 @@ const Login = () => {
                 <label>Password</label>
                 <Input
                     value={password}
+                    type='password'
                     onChange={(e) => setPassword(e.target.value)}
                 ></Input>
                 {passwordError && <Text color='red'>{passwordError}</Text>}
@@ -191,6 +192,7 @@ const Login = () => {
                     <label>Repeat password</label>
                     <Input
                         value={repeatPassword}
+                        type='password'
                         onChange={(e) => setRepeatPassword(e.target.value)}
                     ></Input>
                     {repeatPasswordError && <Text color='red'>{repeatPasswordError}</Text>}
