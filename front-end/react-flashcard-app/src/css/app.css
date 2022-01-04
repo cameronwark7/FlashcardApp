@@ -24,3 +24,12 @@
     margin-right: 10px;
     font-size: larger;
 }
+
+.formSwitch {
+    color: blue;
+    cursor: pointer;
+}
+
+.formSwitch:hover {
+    color: rgb(142, 255, 249);
+}

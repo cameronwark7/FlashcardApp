@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { GoogleLogin } from 'react-google-login';
 import { useHistory } from 'react-router';
 import { signin, signup } from '../actions/auth.js';
-import { Button, Input, Heading, Text } from '@chakra-ui/react';
+import { Center, Box, Button, Input, Heading, Text, VStack } from '@chakra-ui/react';
 
 const Login = () => {
 
@@ -23,7 +23,6 @@ const Login = () => {
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
     const [repeatPasswordError, setRepeatPasswordError] = useState('');
-
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -149,7 +148,7 @@ const Login = () => {
     }
 
     return(
-        <div>
+        <VStack marginY={'10px'}>
             { isSignup ? <Heading size='md'>Sign up</Heading> : <Heading size='md'>Log in</Heading> }
             <form onSubmit={handleSubmit}>
                 { isSignup && (
@@ -201,10 +200,11 @@ const Login = () => {
 
                 {signupError && <Text color='red'>{signupError}</Text>}
                 {loginError && <Text color='red'>{loginError}</Text>}
-                <Button type='submit'>
-                    { isSignup ? 'Sign up' : 'Login' }
-                </Button>
-                <br/>
+                <Center>
+                    <Button type='submit' marginY={'10px'}>
+                        { isSignup ? 'Sign up' : 'Login' }
+                    </Button>
+                </Center>
 
                 {/* { isSignup ? 
                 <GoogleLogin 
@@ -224,9 +224,13 @@ const Login = () => {
                 />
                 } */}
             </form>
-            { isSignup? <><span>Already have an account? </span><a onClick={formSwitch}>Login</a></> 
-                : <><a>Forgot password?</a><span>Don't have an account? </span><a onClick={formSwitch}>Sign up</a></>}
-        </div>
+            <Box>
+                { isSignup? <><span>Already have an account? </span><a onClick={formSwitch} className='formSwitch'>Login</a></> 
+                    : <>
+                    {/* <a>Forgot password? </a> */}
+                    <span>Don't have an account? </span><a onClick={formSwitch} className='formSwitch'>Sign up</a></>}
+            </Box>
+        </VStack>
     )
 }
 
