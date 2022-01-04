@@ -1,14 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { GoogleLogin } from 'react-google-login';
 import { useHistory } from 'react-router';
+import { useParams } from 'react-router-dom';
 import { signin, signup } from '../actions/auth.js';
 import { Center, Box, Button, Input, Heading, Text, VStack } from '@chakra-ui/react';
 
-const Login = () => {
-
-    const [isSignup, setIsSignup] = useState(false);
-
+const Login = (props) => {
+    const [formState, setFormState] = useState('login');
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -26,8 +25,28 @@ const Login = () => {
 
     const dispatch = useDispatch();
     const history = useHistory();
+    const { state } = useParams();
 
-    const formSwitch = () => {
+    useEffect(() => {
+        console.log(state)
+        if (state == 'login') {
+            setFormState('login');
+        } else if (state == 'signup') {
+            setFormState('signup');
+        }
+    }, [state]);
+
+    const loginFormSwitch = () => {
+        resetFields();
+        history.push('/auth/login')
+    }
+
+    const signupFormSwitch = () => {
+        resetFields();
+        history.push('/auth/signup')
+    }
+
+    const resetFields = () => {
         setLoginError('');
         setSignupError('');
         setFirstNameError('');
@@ -39,7 +58,6 @@ const Login = () => {
         setLastName('');
         setEmail('');
         setPassword('');
-        setIsSignup(!isSignup);
     }
 
     const handleSubmit = (e) => {
@@ -59,7 +77,7 @@ const Login = () => {
                 repeatPassword
             }
             console.log(formData);
-            if (isSignup) {
+            if (formState == 'signup') {
                 dispatch(signup(formData, history)).then((res) => {
                     console.log(res);
                     if (res != undefined && res.status != 200) {
@@ -97,7 +115,7 @@ const Login = () => {
             validationState = false;
         }
 
-        if (isSignup) {
+        if (formState == 'signup') {
             if (firstName.length > 20 || firstName.length == 0) {
                 setFirstNameError('First name must be between 1 and 20 characters.');
                 validationState = false;
@@ -119,8 +137,7 @@ const Login = () => {
         return validationState;
     }
 
-    function validateEmail(email) 
-    {
+    function validateEmail(email) {
         var re = /\S+@\S+\.\S+/;
         return re.test(email);
     }
@@ -155,9 +172,9 @@ const Login = () => {
 
     return(
         <VStack marginY={'10px'}>
-            { isSignup ? <Heading size='md'>Sign up</Heading> : <Heading size='md'>Log in</Heading> }
+            { formState == 'signup' ? <Heading size='md'>Sign up</Heading> : <Heading size='md'>Log in</Heading> }
             <form onSubmit={handleSubmit}>
-                { isSignup && (
+                { formState == 'signup' && (
                     <>
                     <label>First name</label>
                     <Input
@@ -193,7 +210,7 @@ const Login = () => {
                 {passwordError && <Text color='red'>{passwordError}</Text>}
                 <br/>
 
-                { isSignup && (
+                { formState == 'signup' && (
                     <>
                     <label>Repeat password</label>
                     <Input
@@ -210,7 +227,7 @@ const Login = () => {
                 {loginError && <Text color='red'>{loginError}</Text>}
                 <Center>
                     <Button type='submit' marginY={'10px'}>
-                        { isSignup ? 'Sign up' : 'Login' }
+                        { formState == 'signup' ? 'Sign up' : 'Login' }
                     </Button>
                 </Center>
 
@@ -233,10 +250,10 @@ const Login = () => {
                 } */}
             </form>
             <Box>
-                { isSignup? <><span>Already have an account? </span><a onClick={formSwitch} className='formSwitch'>Login</a></> 
+                { formState == 'signup'? <><span>Already have an account? </span><a onClick={loginFormSwitch} className='formSwitch'>Login</a></> 
                     : <>
                     {/* <a>Forgot password? </a> */}
-                    <span>Don't have an account? </span><a onClick={formSwitch} className='formSwitch'>Sign up</a></>}
+                    <span>Don't have an account? </span><a onClick={signupFormSwitch} className='formSwitch'>Sign up</a></>}
             </Box>
         </VStack>
     )

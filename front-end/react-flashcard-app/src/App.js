@@ -59,9 +59,12 @@ function App() {
           <Route exact path="/create-deck">
             <CreateDeck />
           </Route>
-          <Route exact path="/login">
+          <Route exact path="/auth/:state">
             <Auth />
           </Route>
+          {/* <Route exact path="/auth/:state">
+            <Auth />
+          </Route> */}
         </Switch>
       </div>
     </Router>

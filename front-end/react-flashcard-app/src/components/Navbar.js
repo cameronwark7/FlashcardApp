@@ -29,7 +29,7 @@ const Navbar = () => {
             {user ? (
                 <Flex borderBottom='1px' borderColor='gray.200' padding={'4px'}>
                 <Center>
-                    <Link to="/">
+                    <Link to="/decks">
                         <span className='headerTitle'>{title}</span>
                     </Link>
                 </Center>
@@ -58,7 +58,7 @@ const Navbar = () => {
                         </Center>
                     </ButtonGroup>
                     <Spacer />
-                    <Link to="/login"><Button marginX={'7px'}>Login</Button></Link>
+                    <Link to="/auth/login"><Button marginX={'7px'}>Login</Button></Link>
                 </Flex>
             )}
         </div>
