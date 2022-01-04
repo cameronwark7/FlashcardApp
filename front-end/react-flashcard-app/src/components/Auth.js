@@ -28,6 +28,7 @@ const Login = (props) => {
     const { state } = useParams();
 
     useEffect(() => {
+        resetFields();
         console.log(state)
         if (state == 'login') {
             setFormState('login');
@@ -62,8 +63,7 @@ const Login = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setLoginError('');
-        setSignupError('');
+        resetFields();
 
         const isValid = validate();
         if (isValid) {
@@ -96,13 +96,7 @@ const Login = (props) => {
     }
 
     const validate = () => {
-        setLoginError('');
-        setSignupError('');
-        setFirstNameError('');
-        setLastNameError('');
-        setEmailError('');
-        setPasswordError('');
-        setRepeatPasswordError('');
+        resetFields();
 
         let validationState = true;
         
