@@ -107,18 +107,22 @@ const DeckView = () => {
     return(
         <div>
             <Heading side='md' marginX={'10px'}>{deckName}</Heading>
-            <HStack>
+            <HStack align={'top'}>
                 <VStack
                 divider={<StackDivider borderColor='gray.200' />}
-                border='1px' borderColor='gray.200'
+                // border='1px' borderColor='gray.200' borderRadius='md'
+                // shouldWrapChildren='true'
+                wrap={'true'}
                 spacing={0}
                 w={'60%'}
                 align='stretch'
                 >
+                    {/* <Box border='1px' borderColor='gray.200' borderRadius='md' divider={<StackDivider borderColor='gray.200' />}> */}
                     { selectedDeck && selectedDeck.map((card, index) => {
-                            return <div onClick={() => setForm(card, index)} class='card'>{card.front}</div>
+                            return <Box onClick={() => setForm(card, index)} className='card'>{card.front}</Box>
                     }) }
                     { selectedDeck.length == 0 && <Center>No cards in deck</Center> }
+                    {/* </Box> */}
                 </VStack>
                 <Box
                 w={'40%'}
