@@ -106,10 +106,11 @@ const DeckView = () => {
 
     return(
         <div>
-            <Heading side='md'>{deckName}</Heading>
+            <Heading side='md' marginX={'10px'}>{deckName}</Heading>
             <HStack>
                 <VStack
                 divider={<StackDivider borderColor='gray.200' />}
+                border='1px' borderColor='gray.200'
                 spacing={0}
                 w={'60%'}
                 align='stretch'

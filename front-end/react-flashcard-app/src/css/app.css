@@ -1,11 +1,12 @@
 .deckListBox {
     cursor: pointer;
+    padding: 5px;
 }
 
 .deckListBox:hover {
-    font-weight: bold;
+    /* font-weight: bold; */
     /* text-decoration: underline; */
-    /* background-color: rgb(241, 241, 241); */
+    background-color: rgb(241, 241, 241);
 }
 
 .card {
@@ -15,11 +16,13 @@
 
 .card:hover {
     /* text-decoration: underline; */
-    font-weight: bold;
+    /* font-weight: bold; */
+    background-color: rgb(241, 241, 241);
 }
 
 .headerTitle {
     font-weight: bold;
+    /* text-decoration: underline; */
     margin-left: 10px;
     margin-right: 10px;
     font-size: larger;

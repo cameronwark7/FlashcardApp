@@ -35,8 +35,9 @@ const Decks = () => {
             <VStack width='80%'  marginY='10px'>
                 <VStack
                 width='80%'
+                border='1px' borderColor='gray.200'
                 divider={<StackDivider borderColor='gray.200' />}
-                spacing={1}
+                spacing={0}
                 borderRadius='md'
                 align='stretch' // moves items from middle of screen to the left
                 >
