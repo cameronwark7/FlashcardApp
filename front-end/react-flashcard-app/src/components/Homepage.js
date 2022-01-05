@@ -35,7 +35,7 @@ const Homepage = () => {
     return(
         <Center>
             <VStack>
-                <Text fontSize='2xl' marginY={'30px'}>Accelerate your learning with Flashcard App!</Text>
+                <Text fontSize='2xl' marginY={'30px'}>Accelerate your learning with Study Boost!</Text>
                 <Center>
                     <VStack>
                         <Text fontSize='xl'>Create flashcards</Text>

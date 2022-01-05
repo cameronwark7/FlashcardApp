@@ -11,7 +11,7 @@ const Navbar = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const location = useLocation();
-    const title = 'Flashcard App';
+    const title = 'Study Boost';
 
     useEffect(() => {
         const token = user?.token;
