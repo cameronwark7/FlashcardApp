@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router';
 import { Button, Text, ButtonGroup, Spacer, Flex, Center } from '@chakra-ui/react';
+import decode from 'jwt-decode';
 
 const Navbar = () => {
 
@@ -15,6 +16,16 @@ const Navbar = () => {
 
     useEffect(() => {
         const token = user?.token;
+
+        if (token) {
+            const decodedToken = decode(token);
+
+            // logout if token expired
+            if (decodedToken.exp * 1000 < new Date().getTime()) {
+                logout();
+            }
+        }
+
         setUser(JSON.parse(localStorage.getItem('profile')));
     }, [location]);
 

@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { ChakraProvider } from '@chakra-ui/react';
+import { extendTheme } from "@chakra-ui/react";
 
 import reducers from './reducers';
 
