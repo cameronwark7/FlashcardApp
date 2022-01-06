@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, ButtonGroup, Input, Center, VStack } from '@chakra-ui/react';
+import { Text, Button, ButtonGroup, Input, Center, VStack, Box } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import * as api from '../api/index';
@@ -61,7 +61,9 @@ const RenameDeck = () => {
     }
 
     return(
-        <Center marginX='10px' width='40%'  marginY='10px'>
+        <Center marginX='10px' width='100%'  marginY='10px'>
+            <VStack>
+                <Text>Deck Name</Text>
             { deckNameError ? 
             <>
                 <Input
@@ -84,6 +86,7 @@ const RenameDeck = () => {
                 <Button onClick={save}>Save</Button>
                 <Button onClick={cancel}>Cancel</Button>
             </ButtonGroup>
+            </VStack>
         </Center>
     )
 }

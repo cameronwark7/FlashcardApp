@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { createDeck } from '../actions/decks';
 import * as api from '../api/index.js';
-import { Text, Button, ButtonGroup, Input, Center, VStack } from '@chakra-ui/react';
+import { Box, Text, Button, ButtonGroup, Input, Center, VStack } from '@chakra-ui/react';
 
 const CreateDeck = () => {
 
@@ -59,9 +59,14 @@ const CreateDeck = () => {
     }
 
     return(
-        <>
-        <Text marginX='10px'>Deck Name:</Text>
-        <Center marginX='10px' width='40%'  marginY='10px'>
+        <Box marginY={'20px'}>
+        <Center>
+            <Text marginX='10px'>New Deck Name</Text>
+        </Center>
+        
+        <Center marginX='10px' width='100%'  marginY='10px'>
+        
+            <VStack>
             { deckNameError ? (
             <>
                 <Input
@@ -81,11 +86,12 @@ const CreateDeck = () => {
             </> )
             }
             <ButtonGroup marginX='10px'>
-                <Button onClick={handleSubmit} type='submit'>Create</Button>
                 <Button onClick={cancel}>Back</Button>
+                <Button onClick={handleSubmit} type='submit'>Create</Button>
             </ButtonGroup>
+            </VStack>
         </Center>
-        </>
+        </Box>
     )
 }
 
