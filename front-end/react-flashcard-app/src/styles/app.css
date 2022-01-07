@@ -42,6 +42,6 @@
 }
 
 .formSwitch:hover {
-    color: rgb(145, 211, 255);
-    /* background-color: #BEE3F8; */
+    /* color: rgb(145, 211, 255); */
+    text-decoration: underline;
 }
