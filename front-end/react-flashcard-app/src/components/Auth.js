@@ -173,6 +173,8 @@ const Login = (props) => {
     return(
         <VStack marginY={'10px'}>
             { formState == 'signup' ? <Heading size='md'>Sign up</Heading> : <Heading size='md'>Log in</Heading> }
+            <Box width={'30%'}>
+            
             <form onSubmit={handleSubmit}>
                 { formState == 'signup' && (
                     <>
@@ -249,6 +251,7 @@ const Login = (props) => {
                 />
                 } */}
             </form>
+            </Box>
             <Box>
                 { formState == 'signup'? <><span>Already have an account? </span><a onClick={loginFormSwitch} className='formSwitch'>Login</a></> 
                     : <>
