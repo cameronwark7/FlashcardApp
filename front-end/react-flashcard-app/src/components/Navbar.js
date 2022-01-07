@@ -38,28 +38,28 @@ const Navbar = () => {
     return(
         <div>
             {user ? (
-                <Flex borderBottom='1px' borderColor='gray.200' padding={'4px'}>
-                <Center>
-                    <Link to="/decks">
-                        <span className='headerTitle'>{title}</span>
-                    </Link>
-                </Center>
-                <ButtonGroup>
-                    <Link to="/add-card">
-                        <Button>Add Cards</Button>
-                    </Link>
-                    <Link to="/study">
-                        <Button>Study</Button>
-                    </Link>
-                    <Link to="/decks">
-                        <Button>My Decks</Button>
-                    </Link>
-                </ButtonGroup>
-                <Spacer />
-                <Button onClick={logout} marginX={'7px'}>Logout</Button>
+                <Flex borderBottom='1px' borderColor='gray.200' padding={'4px'} bg={'blue.100'}>
+                    <Center>
+                        <Link to="/decks">
+                            <span className='headerTitle'>{title}</span>
+                        </Link>
+                    </Center>
+                    <ButtonGroup>
+                        <Link to="/add-card">
+                            <Button>Add Cards</Button>
+                        </Link>
+                        <Link to="/study">
+                            <Button>Study</Button>
+                        </Link>
+                        <Link to="/decks">
+                            <Button>My Decks</Button>
+                        </Link>
+                    </ButtonGroup>
+                    <Spacer />
+                    <Button onClick={logout} marginX={'7px'}>Logout</Button>
                 </Flex>
             ) : (
-                <Flex borderBottom='1px' borderColor='gray.200' padding={'4px'}>
+                <Flex borderBottom='1px' borderColor='gray.200' padding={'4px'} bg={'blue.100'}>
                     <ButtonGroup size='sm'>
                         <Center>
                             <Link to="/">

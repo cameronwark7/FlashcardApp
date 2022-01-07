@@ -10,7 +10,9 @@
 .deckListBox:hover {
     /* font-weight: bold; */
     /* text-decoration: underline; */
-    background-color: rgb(241, 241, 241);
+    /* background-color: rgb(241, 241, 241); */
+    background-color: #BEE3F8;
+    transition: all .4s ease;
 }
 
 .card {
@@ -21,7 +23,9 @@
 .card:hover {
     /* text-decoration: underline; */
     /* font-weight: bold; */
-    background-color: rgb(241, 241, 241);
+    /* background-color: rgb(241, 241, 241); */
+    background-color: #BEE3F8;
+    transition: all .4s ease;
 }
 
 .headerTitle {
@@ -38,5 +42,6 @@
 }
 
 .formSwitch:hover {
-    color: rgb(142, 255, 249);
+    color: rgb(145, 211, 255);
+    /* background-color: #BEE3F8; */
 }
