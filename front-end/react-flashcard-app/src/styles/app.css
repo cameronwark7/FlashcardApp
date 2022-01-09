@@ -28,6 +28,12 @@
     transition: all .4s ease;
 }
 
+.studyDiv {
+    width: 100%;
+    text-align: center;
+    font-size: larger;
+}
+
 .headerTitle {
     font-weight: bold;
     /* text-decoration: underline; */

@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Button, ButtonGroup, Stack, VStack, Center, Text, Box } from '@chakra-ui/react';
+import { StackDivider, Wrap, WrapItem } from '@chakra-ui/react'
 
 const StudyDeck = () => {
 
@@ -80,24 +81,32 @@ const StudyDeck = () => {
     }
 
     return(
-        <VStack marginY={'10px'}>
-            <Center h='150px'>
-                {selectedDeckRandom.length > 0 && <Text fontSize='2xl'>{selectedDeckRandom[deckArrayIndex]?.front}</Text>}
-            </Center>
-            <Center h='150px'>
-                {showCard && <Text fontSize='2xl'>{selectedDeckRandom[deckArrayIndex]?.back}</Text>}
-            </Center>
-            <Box>
-                {selectedDeckRandom.length > 0 ? 
-                <>
-
-                {showCard ? <ButtonGroup><Button onClick={againButtonClick}>Again</Button><Button onClick={goodButtonClick}>Good</Button></ButtonGroup>
-                    : <Button onClick={showButtonClick}>Show</Button> }
-
-                </>
-                : <><Center>Deck complete!</Center><Button onClick={rebuildDeck}>Rebuild Deck</Button></>}
-            </Box>
-        </VStack>
+        <Center>
+            <VStack 
+            marginY={'10px'} 
+            width={'40%'}
+            wrap={'true'}
+            border='1px' borderColor='gray.200' borderRadius={'md'}
+            padding={'20px'}
+            >
+                <Center h='150px' w={'100%'}>
+                    {selectedDeckRandom.length > 0 && <div className='studyDiv'>{selectedDeckRandom[deckArrayIndex]?.front}</div>}
+                    {!selectedDeckRandom.length > 0 && <Center><Text fontSize={'xl'}>Deck complete!</Text></Center>}
+                </Center>
+                <Center h='150px' w={'100%'}>
+                    {showCard && <div className='studyDiv'>{selectedDeckRandom[deckArrayIndex]?.back}</div>}
+                </Center>
+                
+                <Box>
+                    {selectedDeckRandom.length > 0 ? 
+                    <>
+                        {showCard ? <ButtonGroup><Button onClick={againButtonClick}>Again</Button><Button onClick={goodButtonClick}>Good</Button></ButtonGroup>
+                            : <Button onClick={showButtonClick}>Show</Button> }
+                    </>
+                    : <Button onClick={rebuildDeck}>Rebuild Deck</Button>}
+                </Box>
+            </VStack> 
+        </Center>
     )
 }
 
