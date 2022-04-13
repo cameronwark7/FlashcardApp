@@ -48,6 +48,7 @@ const Decks = () => {
                 </VStack>
                 <Button onClick={createDeck}>Create Deck</Button>
             </VStack>
+            
         </Center>
     )
 }
