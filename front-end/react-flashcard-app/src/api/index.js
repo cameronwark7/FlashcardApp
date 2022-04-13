@@ -1,7 +1,7 @@
 import { AccordionDescendantsProvider } from '@chakra-ui/react';
 import axios from 'axios';
 
-const url = 'https://mynxedey84.execute-api.us-west-2.amazonaws.com/api/v1';
+const url = 'https://81298f1bsb.execute-api.us-east-2.amazonaws.com/api/v1';
 
 export const fetchDecks = (data) => axios.post(`${url}/unique-decks`, data);
 // export const fetchDecks = (data) => axios.get(`${url}/unique-decks`, data);
